@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - SquareDocs</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <custom-navbar></custom-navbar>
+    
+    <main class="container mx-auto px-4 py-8 flex-grow">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold text-primary mb-4">About SquareDocs</h1>
+                <p class="text-xl text-gray-600">The official legislation portal of Square Country</p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+                <div class="mb-8">
+                    <h2 class="text-2xl font-semibold text-primary mb-4">Our Mission</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        SquareDocs is the official legislation portal of Square Country, dedicated to providing free and open 
+                        access to all legislative documents that govern our nation. Our mission is to ensure transparency 
+                        in government by making the laws and regulations of Square Country easily accessible to all citizens.
+                    </p>
+                </div>
+
+                <div class="mb-8">
+                    <h2 class="text-2xl font-semibold text-primary mb-4">Document Authenticity</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        All documents available on SquareDocs are official government publications. Each document is verified 
+                        by the Office of Legislative Records before being published on this platform.
+                    </p>
+                    <div class="flex items-center bg-gray-100 p-4 rounded-lg">
+                        <i data-feather="check-circle" class="text-green-500 w-6 h-6 mr-4"></i>
+                        <span class="text-gray-700">Every document bears the official seal of Square Country</span>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <h2 class="text-2xl font-semibold text-primary mb-4">Features</h2>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="flex items-start">
+                            <i data-feather="search" class="text-primary w-6 h-6 mr-4 mt-1"></i>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-800 mb-2">Comprehensive Search</h3>
+                                <p class="text-gray-600">Search by document number, title, keyword, or date range.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i data-feather="download" class="text-primary w-6 h-6 mr-4 mt-1"></i>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-800 mb-2">PDF Downloads</h3>
+                                <p class="text-gray-600">Download any document in PDF format for offline access.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i data-feather="clock" class="text-primary w-6 h-6 mr-4 mt-1"></i>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-800 mb-2">Historical Archive</h3>
+                                <p class="text-gray-600">Access legislation dating back to the founding of Square Country.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i data-feather="bell" class="text-primary w-6 h-6 mr-4 mt-1"></i>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-800 mb-2">Updates & Alerts</h3>
+                                <p class="text-gray-600">Subscribe to receive notifications when new laws are published.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="text-2xl font-semibold text-primary mb-4">Contact</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        For questions about legislation or to report issues with the website, please contact the 
+                        Office of Legislative Records.
+                    </p>
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <div class="flex items-center mb-2">
+                            <i data-feather="mail" class="text-primary w-5 h-5 mr-3"></i>
+                            <span class="text-gray-700">legislative.records@square.gov.sc</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-feather="phone" class="text-primary w-5 h-5 mr-3"></i>
+                            <span class="text-gray-700">+1 (555) 123-4567</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <custom-footer></custom-footer>
+
+    <script src="components/navbar.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="script.js"></script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SquareDocs - Square Country Legislation Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#1e3a8a',
+              secondary: '#1e40af',
+              accent: '#3b82f6'
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <custom-navbar></custom-navbar>
+    
+    <main class="container mx-auto px-4 py-8 flex-grow">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold text-primary mb-4">Square Country Legislation Portal</h1>
+                <p class="text-xl text-gray-600">Access official legislative documents and regulations</p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <h2 class="text-2xl font-semibold text-primary mb-4">Search Legislation</h2>
+                <div class="relative">
+                    <input type="text" placeholder="Search by document number, title, or keyword..." 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent">
+                    <button class="absolute right-2 top-2 bg-accent text-white p-2 rounded-lg hover:bg-secondary transition">
+                        <i data-feather="search"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-primary-100 p-3 rounded-full mr-4">
+                            <i data-feather="file-text" class="text-primary w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Recent Legislation</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Browse the most recently passed laws and regulations.</p>
+                    <a href="recent.html" class="text-accent font-medium hover:text-primary transition flex items-center">
+                        View recent documents
+                        <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-primary-100 p-3 rounded-full mr-4">
+                            <i data-feather="archive" class="text-primary w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Legislative Archive</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Access historical legislation dating back to the founding of Square Country.</p>
+                    <a href="archive.html" class="text-accent font-medium hover:text-primary transition flex items-center">
+                        Browse archive
+                        <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <custom-footer></custom-footer>
+
+    <script src="components/navbar.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="script.js"></script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>

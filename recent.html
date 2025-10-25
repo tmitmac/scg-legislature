@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recent Legislation - SquareDocs</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <custom-navbar></custom-navbar>
+    
+    <main class="container mx-auto px-4 py-8 flex-grow">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-primary mb-2">Recent Legislation</h1>
+                <p class="text-gray-600">Browse recently passed laws and regulations</p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div class="grid grid-cols-12 bg-primary text-white font-semibold px-4 py-3">
+                    <div class="col-span-2">Document #</div>
+                    <div class="col-span-5">Title</div>
+                    <div class="col-span-2">Date Passed</div>
+                    <div class="col-span-3">Actions</div>
+                </div>
+                
+                <!-- Sample legislation items -->
+                <div class="grid grid-cols-12 border-b border-gray-200 px-4 py-3 hover:bg-gray-50">
+                    <div class="col-span-2 font-mono text-gray-700">SC-2023-42</div>
+                    <div class="col-span-5">The Square Education Reform Act</div>
+                    <div class="col-span-2">2023-11-15</div>
+                    <div class="col-span-3">
+                        <button onclick="loadPDFViewer('/documents/sc-2023-42.pdf')" class="text-accent hover:text-primary transition mr-4">
+                            <i data-feather="file-text" class="w-4 h-4 inline mr-1"></i> View
+                        </button>
+                        <a href="/documents/sc-2023-42.pdf" download class="text-accent hover:text-primary transition">
+                            <i data-feather="download" class="w-4 h-4 inline mr-1"></i> Download
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-12 border-b border-gray-200 px-4 py-3 hover:bg-gray-50">
+                    <div class="col-span-2 font-mono text-gray-700">SC-2023-41</div>
+                    <div class="col-span-5">Urban Development Guidelines Amendment</div>
+                    <div class="col-span-2">2023-11-10</div>
+                    <div class="col-span-3">
+                        <button onclick="loadPDFViewer('/documents/sc-2023-41.pdf')" class="text-accent hover:text-primary transition mr-4">
+                            <i data-feather="file-text" class="w-4 h-4 inline mr-1"></i> View
+                        </button>
+                        <a href="/documents/sc-2023-41.pdf" download class="text-accent hover:text-primary transition">
+                            <i data-feather="download" class="w-4 h-4 inline mr-1"></i> Download
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-12 border-b border-gray-200 px-4 py-3 hover:bg-gray-50">
+                    <div class="col-span-2 font-mono text-gray-700">SC-2023-40</div>
+                    <div class="col-span-5">Public Health and Safety Regulations</div>
+                    <div class="col-span-2">2023-11-05</div>
+                    <div class="col-span-3">
+                        <button onclick="loadPDFViewer('/documents/sc-2023-40.pdf')" class="text-accent hover:text-primary transition mr-4">
+                            <i data-feather="file-text" class="w-4 h-4 inline mr-1"></i> View
+                        </button>
+                        <a href="/documents/sc-2023-40.pdf" download class="text-accent hover:text-primary transition">
+                            <i data-feather="download" class="w-4 h-4 inline mr-1"></i> Download
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-12 px-4 py-3 hover:bg-gray-50">
+                    <div class="col-span-2 font-mono text-gray-700">SC-2023-39</div>
+                    <div class="col-span-5">Transportation Infrastructure Funding Bill</div>
+                    <div class="col-span-2">2023-10-28</div>
+                    <div class="col-span-3">
+                        <button onclick="loadPDFViewer('/documents/sc-2023-39.pdf')" class="text-accent hover:text-primary transition mr-4">
+                            <i data-feather="file-text" class="w-4 h-4 inline mr-1"></i> View
+                        </button>
+                        <a href="/documents/sc-2023-39.pdf" download class="text-accent hover:text-primary transition">
+                            <i data-feather="download" class="w-4 h-4 inline mr-1"></i> Download
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 flex justify-between items-center">
+                <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300 transition">
+                    <i data-feather="chevron-left" class="inline mr-2"></i> Previous
+                </button>
+                <span class="text-gray-600">Page 1 of 12</span>
+                <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300 transition">
+                    Next <i data-feather="chevron-right" class="inline ml-2"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- PDF Viewer Modal (hidden by default) -->
+        <div id="pdf-viewer-container" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden items-center justify-center p-8">
+            <div class="bg-white rounded-lg w-full max-w-6xl h-full max-h-screen p-6 overflow-auto relative">
+                <button onclick="document.getElementById('pdf-viewer-container').classList.add('hidden')" 
+                        class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+                    <i data-feather="x" class="w-6 h-6"></i>
+                </button>
+                <div id="pdf-viewer-content" class="h-full"></div>
+            </div>
+        </div>
+    </main>
+
+    <custom-footer></custom-footer>
+
+    <script src="components/navbar.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="script.js"></script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>
