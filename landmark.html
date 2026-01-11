@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landmark Legislation – SquareDocs</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+
+    <custom-navbar></custom-navbar>
+
+    <main class="container mx-auto px-4 py-8 flex-grow max-w-6xl">
+
+        <!-- Header -->
+        <div class="mb-10">
+            <h1 class="text-3xl font-bold text-primary mb-2">Landmark Legislation</h1>
+            <p class="text-gray-600 max-w-3xl">
+                A curated collection of the most significant laws in the history of Square Country — 
+                legislation that reshaped governance, expanded rights, and altered the national trajectory.
+            </p>
+        </div>
+
+        <!-- Era sections -->
+        <div class="space-y-10">
+
+            <!-- Foundational Era -->
+            <section>
+                <h2 class="text-2xl font-semibold text-primary mb-4">Foundational Era</h2>    
+
+                <div class="bg-white rounded-lg shadow p-6 mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-1">
+                        Electoral Act 1986
+                    </h3>
+                    <p class="text-sm text-gray-500 mb-3">Enacted: 20th Century</p>
+                    <p class="text-gray-700">
+                        Reformed the electoral laws of Square Country, changing the leadership and political landscape of Square Country for years to come.
+                    </p>
+                    <a href="documents/electoral.pdf"
+                       class="inline-flex items-center mt-4 text-accent font-medium hover:text-primary transition">
+                        View document
+                        <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
+                    </a>
+                </div>
+
+
+           
+
+        </div>
+
+        <!-- Back link -->
+        <div class="mt-12">
+            <a href="/archive/index.html"
+               class="inline-flex items-center text-gray-600 hover:text-primary transition">
+                <i data-feather="arrow-left" class="mr-2 w-4 h-4"></i>
+                Back to Legislative Archive
+            </a>
+        </div>
+
+    </main>
+
+    <custom-footer></custom-footer>
+
+    <script src="../components/navbar.js"></script>
+    <script src="../components/footer.js"></script>
+    <script>
+        feather.replace();
+    </script>
+
+</body>
+</html>
