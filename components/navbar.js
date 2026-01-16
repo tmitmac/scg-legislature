@@ -1,30 +1,43 @@
 class CustomNavbar extends HTMLElement {
   connectedCallback() {
     this.attachShadow({ mode: 'open' });
+
     this.shadowRoot.innerHTML = `
       <style>
+        :host {
+          display: block;
+        }
+
         nav {
           background: #1e3a8a;
-          padding: 1rem 2rem;
+          padding: 0.75rem 1rem;
           display: flex;
+          align-items: center;
           justify-content: space-between;
-          align-items: center;
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+          position: relative;
         }
-        .logo-container {
-          display: flex;
-          align-items: center;
-        }
+
         .logo {
           color: white;
-          font-weight: bold;
-          font-size: 1.25rem;
+          font-weight: 700;
+          font-size: 1.1rem;
+          text-decoration: none;
           display: flex;
           align-items: center;
+          gap: 0.5rem;
+          white-space: nowrap;
         }
-        .logo-icon {
-          margin-right: 0.5rem;
+
+        .menu-toggle {
+          display: none;
+          background: none;
+          border: none;
+          color: white;
+          cursor: pointer;
+          padding: 0.5rem;
         }
+
         ul {
           display: flex;
           gap: 1.5rem;
@@ -32,49 +45,90 @@ class CustomNavbar extends HTMLElement {
           margin: 0;
           padding: 0;
         }
+
         a {
           color: white;
           text-decoration: none;
           font-weight: 500;
-          transition: opacity 0.2s;
           display: flex;
           align-items: center;
+          gap: 0.5rem;
+          padding: 0.5rem 0;
         }
+
         a:hover {
-          opacity: 0.8;
+          opacity: 0.85;
         }
-        .nav-icon {
-          margin-right: 0.5rem;
+
+        /* ICONS */
+        .icon {
           width: 1rem;
           height: 1rem;
         }
+
+        /* MOBILE */
         @media (max-width: 768px) {
-          nav {
-            flex-direction: column;
-            padding: 1rem;
+          .menu-toggle {
+            display: block;
           }
+
           ul {
-            margin-top: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #1e3a8a;
+            flex-direction: column;
+            gap: 0;
+            padding: 0.5rem 0;
+            display: none;
+          }
+
+          ul.open {
+            display: flex;
+          }
+
+          li a {
+            padding: 0.75rem 1.25rem;
+          }
+
+          li a:active {
+            background: rgba(255,255,255,0.08);
           }
         }
       </style>
+
       <nav>
-        <div class="logo-container">
-          <a href="index.html" class="logo">
-            <i data-feather="book-open" class="logo-icon"></i>
-            Square Country Legislation
-          </a>
-        </div>
+        <a href="index.html" class="logo">
+          <i data-feather="book-open"></i>
+          Square Country Legislation
+        </a>
+
+        <button class="menu-toggle" aria-label="Toggle menu">
+          <i data-feather="menu"></i>
+        </button>
+
         <ul>
-          <li><a href="index.html"><i data-feather="home" class="nav-icon"></i> Home</a></li>
-          <li><a href="recent.html"><i data-feather="file-text" class="nav-icon"></i> Recent</a></li>
-          <li><a href="archive.html"><i data-feather="archive" class="nav-icon"></i> Archive</a></li>
-          <li><a href="about.html"><i data-feather="info" class="nav-icon"></i> About</a></li>
+          <li><a href="index.html"><i data-feather="home" class="icon"></i>Home</a></li>
+          <li><a href="recent.html"><i data-feather="file-text" class="icon"></i>Recent</a></li>
+          <li><a href="archive.html"><i data-feather="archive" class="icon"></i>Archive</a></li>
+          <li><a href="about.html"><i data-feather="info" class="icon"></i>About</a></li>
         </ul>
       </nav>
     `;
+
+    const toggle = this.shadowRoot.querySelector('.menu-toggle');
+    const menu = this.shadowRoot.querySelector('ul');
+
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('open');
+    });
+
+    // Render feather icons inside shadow DOM
+    if (window.feather) {
+      feather.replace({ root: this.shadowRoot });
+    }
   }
 }
+
 customElements.define('custom-navbar', CustomNavbar);
