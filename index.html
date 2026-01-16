@@ -87,29 +87,41 @@
 
     <custom-footer></custom-footer>
 
-    <!-- ACT MENU MODAL -->
-    <div id="actMenu" class="fixed inset-0 bg-black/40 hidden items-center justify-center z-50">
-        <div class="bg-white rounded-lg shadow-xl max-w-lg w-full p-6">
-            <h2 id="actTitle" class="text-2xl font-bold text-primary mb-1"></h2>
-            <p id="actNumber" class="text-gray-600 mb-6"></p>
+<!-- ACT MENU BOTTOM SHEET -->
+<div id="actMenu"
+     class="fixed inset-0 bg-black/40 hidden items-end justify-center z-50 transition-opacity">
+        <div onclick="closeActMenu()" class="absolute inset-0"></div>
 
-            <a id="originalLink"
-               class="block w-full bg-primary text-white text-center py-3 rounded-lg hover:bg-secondary transition mb-4"
-               target="_blank">
-                View Original Act
-            </a>
 
-            <div id="amendmentsSection">
-                <h3 class="font-semibold text-gray-800 mb-2">Amendments</h3>
-                <div id="amendmentsList" class="space-y-2"></div>
-            </div>
+    <div id="actMenuPanel"
+         class="bg-white rounded-t-2xl shadow-xl max-w-lg w-full p-6
+                transform translate-y-full transition-transform duration-300 ease-out">
 
-            <button onclick="closeActMenu()"
-                    class="mt-6 w-full border border-gray-300 py-2 rounded-lg hover:bg-gray-100 transition">
-                Close
-            </button>
+        <!-- Drag Handle (optional but nice) -->
+        <div class="w-12 h-1.5 bg-gray-300 rounded-full mx-auto mb-4"></div>
+
+        <h2 id="actTitle" class="text-2xl font-bold text-primary mb-1"></h2>
+        <p id="actNumber" class="text-gray-600 mb-6"></p>
+
+        <a id="originalLink"
+           class="block w-full bg-primary text-white text-center py-3 rounded-lg hover:bg-secondary transition mb-4"
+           target="_blank">
+            View Original Act
+        </a>
+
+        <div id="amendmentsSection">
+            <h3 class="font-semibold text-gray-800 mb-2">Amendments</h3>
+            <div id="amendmentsList" class="space-y-2"></div>
         </div>
+
+        <button onclick="closeActMenu()"
+                class="mt-6 w-full border border-gray-300 py-2 rounded-lg hover:bg-gray-100 transition">
+            Close
+        </button>
+
     </div>
+</div>
+
 
     <script src="components/navbar.js"></script>
     <script src="components/footer.js"></script>
@@ -223,6 +235,60 @@ function closeActMenu() {
     menu.classList.add("hidden");
     menu.classList.remove("flex");
 }
+
+function openActMenu(actNumber) {
+    const doc = legislationDocuments.find(d => d.number === actNumber);
+    if (!doc) return;
+
+    document.getElementById("actTitle").textContent = doc.title;
+    document.getElementById("actNumber").textContent = doc.number;
+
+    const originalLink = document.getElementById("originalLink");
+    originalLink.href = doc.original;
+
+    const amendmentsList = document.getElementById("amendmentsList");
+    const amendmentsSection = document.getElementById("amendmentsSection");
+    amendmentsList.innerHTML = "";
+
+    if (doc.amendments.length === 0) {
+        amendmentsSection.classList.add("hidden");
+    } else {
+        amendmentsSection.classList.remove("hidden");
+        doc.amendments.forEach(amend => {
+            amendmentsList.innerHTML += `
+                <a href="${amend.link}" target="_blank"
+                   class="block p-3 border rounded-lg hover:bg-gray-50 transition">
+                    ${amend.title}
+                </a>
+            `;
+        });
+    }
+
+    const menu = document.getElementById("actMenu");
+    const panel = document.getElementById("actMenuPanel");
+
+    menu.classList.remove("hidden");
+    menu.classList.add("flex");
+
+    // Allow repaint before animation
+    requestAnimationFrame(() => {
+        panel.classList.remove("translate-y-full");
+    });
+}
+
+function closeActMenu() {
+    const menu = document.getElementById("actMenu");
+    const panel = document.getElementById("actMenuPanel");
+
+    panel.classList.add("translate-y-full");
+
+    setTimeout(() => {
+        menu.classList.add("hidden");
+        menu.classList.remove("flex");
+    }, 300);
+}
+
+
 </script>
 </body>
 </html>
