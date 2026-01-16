@@ -131,7 +131,7 @@ const legislationDocuments = [
             {
                 year: 2026,
                 title: "Electoral Amendment (Online Voting) Act 2026",
-                link: "documents/sc-1986-33-amend-2014.pdf"
+                link: "documents/sc-2026-01.pdf"
             }
         ],
         keywords: "electoral government election MMP"
@@ -142,6 +142,13 @@ const legislationDocuments = [
         original: "documents/sc-2025-42.pdf",
         amendments: [],
         keywords: "finance economy tax FRD frd"
+    },
+    {
+        number: "SC-2025-43",
+        title: "Defence Expansion Act 2025",
+        original: "documents/sc-2025-43.pdf",
+        amendments: [],
+        keywords: "defence expansion MOD mod"
     }
 ];
 
@@ -167,19 +174,25 @@ function searchLegislation() {
         return;
     }
 
-    results.forEach((doc, index) => {
-        resultsContainer.innerHTML += `
-            <button onclick="openActMenu(${index})"
-                class="w-full text-left p-4 bg-white rounded-lg shadow hover:bg-gray-50 transition">
-                <h3 class="font-semibold text-primary">${doc.title}</h3>
-                <p class="text-sm text-gray-600">${doc.number}</p>
-            </button>
-        `;
-    });
+    results.forEach(doc => {
+    resultsContainer.innerHTML += `
+        <button onclick="openActMenu('${doc.number}')"
+            class="w-full text-left p-4 bg-white rounded-lg shadow hover:bg-gray-50 transition">
+            <h3 class="font-semibold text-primary">${doc.title}</h3>
+            <p class="text-sm text-gray-600">${doc.number}</p>
+        </button>
+    `;
+});
+
 }
 
-function openActMenu(index) {
-    const doc = legislationDocuments[index];
+function openActMenu(actNumber) {
+    const doc = legislationDocuments.find(
+        d => d.number === actNumber
+    );
+
+    if (!doc) return;
+
 
     document.getElementById("actTitle").textContent = doc.title;
     document.getElementById("actNumber").textContent = doc.number;
