@@ -33,15 +33,28 @@
             </div>
 
             <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
-                <h2 class="text-2xl font-semibold text-primary mb-4">Search Legislation</h2>
-                <div class="relative">
-                    <input type="text" placeholder="Search by document number, title, or keyword..." 
-                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent">
-                    <button class="absolute right-2 top-2 bg-accent text-white p-2 rounded-lg hover:bg-secondary transition">
-                        <i data-feather="search"></i>
-                    </button>
-                </div>
-            </div>
+    <h2 class="text-2xl font-semibold text-primary mb-4">Search Legislation</h2>
+
+    <form onsubmit="searchLegislation(); return false;" class="relative">
+        <input 
+            id="legislationSearch"
+            type="text"
+            placeholder="Search by document number, title, or keyword..."
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
+        >
+        <button 
+            type="submit"
+            class="absolute right-2 top-2 bg-accent text-white p-2 rounded-lg hover:bg-secondary transition"
+        >
+            <i data-feather="search"></i>
+        </button>
+    </form>
+</div>
+
+
+<div id="searchResults" class="space-y-3"></div>
+
+
 
             <div class="grid md:grid-cols-2 gap-6">
                 <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition">
@@ -82,6 +95,61 @@
     <script src="script.js"></script>
     <script>
         feather.replace();
+    </script>
+    <script>
+const legislationDocuments = [
+    {
+        number: "SC-1986-33",
+        title: "Electoral Act 1986",
+        keywords: "electoral government election MMP",
+        link: "documents/sc-1986-33.pdf"
+    },
+    {
+        number: "SC-2025-42",
+        title: "Federal Revenue and Tax Reform Act 2025",
+        keywords: "finance economy tax FRD frd",
+        link: "documents/sc-2025-42.pdf"
+    },
+    {
+        number: "Bill 203",
+        title: "Climate Responsibility Bill",
+        keywords: "climate environment emissions",
+        link: "documents/climate-bill.html"
+    }
+];
+
+function searchLegislation() {
+    const query = document.getElementById("legislationSearch").value.toLowerCase();
+    const resultsContainer = document.getElementById("searchResults");
+    resultsContainer.innerHTML = "";
+
+    if (!query) {
+        resultsContainer.innerHTML = "<p class='text-gray-500'>Enter a search term.</p>";
+        return;
+    }
+
+    const results = legislationDocuments.filter(doc =>
+        doc.number.toLowerCase().includes(query) ||
+        doc.title.toLowerCase().includes(query) ||
+        doc.keywords.toLowerCase().includes(query)
+    );
+
+    if (results.length === 0) {
+        resultsContainer.innerHTML = "<p class='text-gray-500'>No documents found.</p>";
+        return;
+    }
+
+    results.forEach(doc => {
+        resultsContainer.innerHTML += `
+            <a href="${doc.link}" class="block p-4 bg-white rounded-lg shadow hover:bg-gray-50 transition">
+                <h3 class="font-semibold text-primary">${doc.title}</h3>
+                <p class="text-sm text-gray-600">${doc.number}</p>
+            </a>
+        `;
+    });
+}
+</script>
+
     </script>
 </body>
 </html>
