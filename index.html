@@ -47,10 +47,8 @@
         </h2>
 
         <form onsubmit="searchLegislation(); return false;" class="relative">
-          <i
-            data-feather="search"
-            class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none">
-          </i>
+          <i data-feather="search"
+             class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none"></i>
 
           <input
             id="legislationSearch"
@@ -81,9 +79,8 @@
           <p class="text-gray-600 mb-4">
             Browse the most recently passed laws and regulations.
           </p>
-          <a
-            href="recent.html"
-            class="text-accent font-medium hover:text-primary transition flex items-center">
+          <a href="recent.html"
+             class="text-accent font-medium hover:text-primary transition flex items-center">
             View recent documents
             <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
           </a>
@@ -101,9 +98,8 @@
           <p class="text-gray-600 mb-4">
             Access historical legislation dating back to the founding of Square Country.
           </p>
-          <a
-            href="archive.html"
-            class="text-accent font-medium hover:text-primary transition flex items-center">
+          <a href="archive.html"
+             class="text-accent font-medium hover:text-primary transition flex items-center">
             Browse archive
             <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
           </a>
@@ -114,29 +110,41 @@
 
   <custom-footer></custom-footer>
 
-  <!-- ACT MENU BOTTOM SHEET -->
-  <div
-    id="actMenu"
-    class="fixed inset-0 bg-black/40 hidden items-end justify-center z-50">
+  <!-- ACT MENU -->
+  <div id="actMenu"
+       class="fixed inset-0 bg-black/40 hidden items-end justify-center z-50">
 
     <div onclick="closeActMenu()" class="absolute inset-0"></div>
 
-    <div
-      id="actMenuPanel"
-      class="bg-white rounded-t-2xl shadow-xl w-full max-w-md
-             p-4 sm:p-6 max-h-[85vh] overflow-y-auto
-             transform translate-y-full transition-transform duration-300 ease-out">
+    <div id="actMenuPanel"
+         class="bg-white rounded-t-2xl shadow-xl w-full max-w-md
+                p-4 sm:p-6 max-h-[85vh] overflow-y-auto
+                transform translate-y-full transition-transform duration-300 ease-out">
 
       <div class="w-12 h-1.5 bg-gray-300 rounded-full mx-auto mb-4"></div>
 
       <h2 id="actTitle" class="text-xl sm:text-2xl font-bold text-primary mb-1"></h2>
-      <p id="actNumber" class="text-gray-600 mb-6"></p>
+      <p id="actNumber" class="text-gray-600 mb-4"></p>
 
-      <a
-        id="originalLink"
-        target="_blank"
-        class="block w-full bg-primary text-white text-center py-3.5 rounded-lg
-               hover:bg-secondary active:scale-[0.99] transition mb-4">
+      <!-- REPEALED NOTICE -->
+      <div id="repealedNotice"
+           class="hidden mb-6 rounded-lg border border-red-300 bg-red-50 p-4">
+        <div class="flex items-start">
+          <i data-feather="alert-triangle"
+             class="text-red-600 w-5 h-5 mr-3 mt-0.5"></i>
+          <div>
+            <p class="font-semibold text-red-700">
+              This Act has been repealed
+            </p>
+            <p id="repealedText" class="text-sm text-red-700 mt-1"></p>
+          </div>
+        </div>
+      </div>
+
+      <a id="originalLink"
+         target="_blank"
+         class="block w-full bg-primary text-white text-center py-3.5 rounded-lg
+                hover:bg-secondary active:scale-[0.99] transition mb-4">
         View Original Act
       </a>
 
@@ -145,10 +153,9 @@
         <div id="amendmentsList" class="space-y-2"></div>
       </div>
 
-      <button
-        onclick="closeActMenu()"
-        class="mt-6 w-full border border-gray-300 py-3 rounded-lg
-               hover:bg-gray-100 active:scale-[0.99] transition">
+      <button onclick="closeActMenu()"
+              class="mt-6 w-full border border-gray-300 py-3 rounded-lg
+                     hover:bg-gray-100 active:scale-[0.99] transition">
         Close
       </button>
     </div>
@@ -195,10 +202,10 @@
         title: "Traffic Laws Act 1994",
         original: "documents/sc-1994-27.pdf",
         amendments: [
-            {
-                title: "Traffic Laws (Emergency Speed) Amendment Act 2008",
-                link: "documents/sc-2008-31.pdf"
-            }
+          {
+            title: "Traffic Laws (Emergency Speed) Amendment Act 2008",
+            link: "documents/sc-2008-31.pdf"
+          }
         ],
         keywords: "traffic laws ministry transport 1994"
       },
@@ -207,38 +214,58 @@
         title: "Electoral Act 1953",
         original: "documents/sc-1953-18.pdf",
         amendments: [],
-        keywords: "electoral election government FPP"
+        keywords: "electoral election government FPP",
+        repealed: true,
+        repealedBy: "Electoral Act 1986"
       },
+      {
+        number: "SC-1950-02",
+        title: "Wildlife Act 1950",
+        original: "documents/sc-1950-02.pdf",
+        amendments: [],
+        keywords: "wildlife animals nature conservation",
+        repealed: false,
+        repealedBy: ""
+      }
     ];
 
-    function searchLegislation() {
-      const query = legislationSearch.value.toLowerCase();
-      searchResults.innerHTML = "";
 
-      const results = legislationDocuments.filter(doc =>
-        doc.number.toLowerCase().includes(query) ||
-        doc.title.toLowerCase().includes(query) ||
-        doc.keywords.includes(query)
-      );
+  function searchLegislation() {
+    const query = legislationSearch.value.toLowerCase();
+    searchResults.innerHTML = "";
 
-      if (!results.length) {
-        searchResults.innerHTML =
-          "<p class='text-gray-500'>No documents found.</p>";
-        return;
-      }
+    const results = legislationDocuments.filter(doc =>
+      doc.number.toLowerCase().includes(query) ||
+      doc.title.toLowerCase().includes(query) ||
+      doc.keywords.includes(query)
+    );
 
-      results.forEach(doc => {
-        searchResults.innerHTML += `
-          <button onclick="openActMenu('${doc.number}')"
-            class="w-full text-left p-4 sm:p-5 bg-white rounded-xl shadow
-                   hover:bg-gray-50 active:scale-[0.99] transition">
-            <h3 class="font-semibold text-primary text-base sm:text-lg">
-              ${doc.title}
-            </h3>
-            <p class="text-sm text-gray-600 mt-1">${doc.number}</p>
-          </button>`;
-      });
+    if (!results.length) {
+      searchResults.innerHTML =
+        "<p class='text-gray-500'>No documents found.</p>";
+      return;
     }
+
+    results.forEach(doc => {
+      const repealedBadge = doc.repealed
+        ? `<span class="ml-2 inline-block rounded-full bg-red-100 px-2.5 py-0.5
+                 text-xs font-semibold text-red-700 align-middle">
+             REPEALED
+           </span>`
+        : "";
+
+      searchResults.innerHTML += `
+        <button onclick="openActMenu('${doc.number}')"
+          class="w-full text-left p-4 sm:p-5 bg-white rounded-xl shadow
+                 hover:bg-gray-50 active:scale-[0.99] transition">
+          <h3 class="font-semibold text-primary text-base sm:text-lg flex items-center flex-wrap">
+            ${doc.title}
+            ${repealedBadge}
+          </h3>
+          <p class="text-sm text-gray-600 mt-1">${doc.number}</p>
+        </button>`;
+    });
+  }
 
     function openActMenu(number) {
       const doc = legislationDocuments.find(d => d.number === number);
@@ -247,6 +274,13 @@
       actTitle.textContent = doc.title;
       actNumber.textContent = doc.number;
       originalLink.href = doc.original;
+
+      if (doc.repealed) {
+        repealedNotice.classList.remove("hidden");
+        repealedText.textContent = `Repealed by the ${doc.repealedBy}.`;
+      } else {
+        repealedNotice.classList.add("hidden");
+      }
 
       amendmentsList.innerHTML = "";
       if (!doc.amendments.length) {
