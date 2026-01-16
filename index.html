@@ -1,294 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SquareDocs - Square Country Legislation Portal</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: '#1e3a8a',
-              secondary: '#1e40af',
-              accent: '#3b82f6'
-            }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SquareDocs - Square Country Legislation Portal</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1e3a8a',
+            secondary: '#1e40af',
+            accent: '#3b82f6'
           }
         }
       }
-    </script>
+    }
+  </script>
 </head>
-<body class="bg-gray-50 min-h-screen flex flex-col">
-    <custom-navbar></custom-navbar>
-    
-    <main class="container mx-auto px-4 py-8 flex-grow">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-12">
-                <h1 class="text-4xl font-bold text-primary mb-4">Square Country Legislation Portal</h1>
-                <p class="text-xl text-gray-600">Access official legislative documents and regulations</p>
+
+<body class="bg-gray-50 min-h-screen flex flex-col antialiased">
+  <custom-navbar></custom-navbar>
+
+  <main class="container mx-auto px-4 py-6 sm:py-8 flex-grow">
+    <div class="max-w-4xl mx-auto">
+
+      <!-- HERO -->
+      <div class="text-center mb-8 sm:mb-12">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-3">
+          Square Country Legislation Portal
+        </h1>
+        <p class="text-base sm:text-lg md:text-xl text-gray-600">
+          Access official legislative documents and regulations
+        </p>
+      </div>
+
+      <!-- SEARCH -->
+      <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6 mb-8">
+        <h2 class="text-xl sm:text-2xl font-semibold text-primary mb-4">
+          Search Legislation
+        </h2>
+
+        <form onsubmit="searchLegislation(); return false;" class="relative">
+          <i
+            data-feather="search"
+            class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none">
+          </i>
+
+          <input
+            id="legislationSearch"
+            type="text"
+            inputmode="search"
+            placeholder="Search by document number, title, or keyword…"
+            class="w-full pl-11 pr-4 py-3 sm:py-3.5 border border-gray-300 rounded-lg
+                   focus:ring-2 focus:ring-accent focus:border-accent
+                   text-base text-gray-800 placeholder-gray-400"
+          />
+        </form>
+      </div>
+
+      <!-- RESULTS -->
+      <div id="searchResults" class="space-y-4 mb-10"></div>
+
+      <!-- QUICK LINKS -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+        <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6 hover:shadow-xl transition">
+          <div class="flex items-center mb-3">
+            <div class="bg-blue-100 p-3 rounded-full mr-4">
+              <i data-feather="file-text" class="text-primary w-6 h-6"></i>
             </div>
-
-            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
-                <h2 class="text-2xl font-semibold text-primary mb-4">Search Legislation</h2>
-
-                <form onsubmit="searchLegislation(); return false;" class="relative">
-    <i data-feather="search"
-       class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none"></i>
-
-    <input 
-        id="legislationSearch"
-        type="text"
-        placeholder="Search by document number, title, or keyword..."
-        class="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg
-               focus:ring-2 focus:ring-accent focus:border-accent
-               text-gray-800 placeholder-gray-400"
-    >
-</form>
-
-            </div>
-
-            <div id="searchResults" class="space-y-3 mb-12"></div>
-
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-primary-100 p-3 rounded-full mr-4">
-                            <i data-feather="file-text" class="text-primary w-6 h-6"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-800">Recent Legislation</h3>
-                    </div>
-                    <p class="text-gray-600 mb-4">Browse the most recently passed laws and regulations.</p>
-                    <a href="recent.html" class="text-accent font-medium hover:text-primary transition flex items-center">
-                        View recent documents
-                        <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
-                    </a>
-                </div>
-
-                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-primary-100 p-3 rounded-full mr-4">
-                            <i data-feather="archive" class="text-primary w-6 h-6"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-800">Legislative Archive</h3>
-                    </div>
-                    <p class="text-gray-600 mb-4">Access historical legislation dating back to the founding of Square Country.</p>
-                    <a href="archive.html" class="text-accent font-medium hover:text-primary transition flex items-center">
-                        Browse archive
-                        <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <custom-footer></custom-footer>
-
-<!-- ACT MENU BOTTOM SHEET -->
-<div id="actMenu"
-     class="fixed inset-0 bg-black/40 hidden items-end justify-center z-50 transition-opacity">
-        <div onclick="closeActMenu()" class="absolute inset-0"></div>
-
-
-    <div id="actMenuPanel"
-         class="bg-white rounded-t-2xl shadow-xl max-w-lg w-full p-6
-                transform translate-y-full transition-transform duration-300 ease-out">
-
-        <!-- Drag Handle (optional but nice) -->
-        <div class="w-12 h-1.5 bg-gray-300 rounded-full mx-auto mb-4"></div>
-
-        <h2 id="actTitle" class="text-2xl font-bold text-primary mb-1"></h2>
-        <p id="actNumber" class="text-gray-600 mb-6"></p>
-
-        <a id="originalLink"
-           class="block w-full bg-primary text-white text-center py-3 rounded-lg hover:bg-secondary transition mb-4"
-           target="_blank">
-            View Original Act
-        </a>
-
-        <div id="amendmentsSection">
-            <h3 class="font-semibold text-gray-800 mb-2">Amendments</h3>
-            <div id="amendmentsList" class="space-y-2"></div>
+            <h3 class="text-lg sm:text-xl font-semibold text-gray-800">
+              Recent Legislation
+            </h3>
+          </div>
+          <p class="text-gray-600 mb-4">
+            Browse the most recently passed laws and regulations.
+          </p>
+          <a
+            href="recent.html"
+            class="text-accent font-medium hover:text-primary transition flex items-center">
+            View recent documents
+            <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
+          </a>
         </div>
 
-        <button onclick="closeActMenu()"
-                class="mt-6 w-full border border-gray-300 py-2 rounded-lg hover:bg-gray-100 transition">
-            Close
-        </button>
-
+        <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6 hover:shadow-xl transition">
+          <div class="flex items-center mb-3">
+            <div class="bg-blue-100 p-3 rounded-full mr-4">
+              <i data-feather="archive" class="text-primary w-6 h-6"></i>
+            </div>
+            <h3 class="text-lg sm:text-xl font-semibold text-gray-800">
+              Legislative Archive
+            </h3>
+          </div>
+          <p class="text-gray-600 mb-4">
+            Access historical legislation dating back to the founding of Square Country.
+          </p>
+          <a
+            href="archive.html"
+            class="text-accent font-medium hover:text-primary transition flex items-center">
+            Browse archive
+            <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
     </div>
-</div>
+  </main>
 
+  <custom-footer></custom-footer>
 
-    <script src="components/navbar.js"></script>
-    <script src="components/footer.js"></script>
-    <script src="script.js"></script>
-    <script>feather.replace();</script>
+  <!-- ACT MENU BOTTOM SHEET -->
+  <div
+    id="actMenu"
+    class="fixed inset-0 bg-black/40 hidden items-end justify-center z-50">
 
-    <script>
-const legislationDocuments = [
-    {
+    <div onclick="closeActMenu()" class="absolute inset-0"></div>
+
+    <div
+      id="actMenuPanel"
+      class="bg-white rounded-t-2xl shadow-xl w-full max-w-md
+             p-4 sm:p-6 max-h-[85vh] overflow-y-auto
+             transform translate-y-full transition-transform duration-300 ease-out">
+
+      <div class="w-12 h-1.5 bg-gray-300 rounded-full mx-auto mb-4"></div>
+
+      <h2 id="actTitle" class="text-xl sm:text-2xl font-bold text-primary mb-1"></h2>
+      <p id="actNumber" class="text-gray-600 mb-6"></p>
+
+      <a
+        id="originalLink"
+        target="_blank"
+        class="block w-full bg-primary text-white text-center py-3.5 rounded-lg
+               hover:bg-secondary active:scale-[0.99] transition mb-4">
+        View Original Act
+      </a>
+
+      <div id="amendmentsSection">
+        <h3 class="font-semibold text-gray-800 mb-2">Amendments</h3>
+        <div id="amendmentsList" class="space-y-2"></div>
+      </div>
+
+      <button
+        onclick="closeActMenu()"
+        class="mt-6 w-full border border-gray-300 py-3 rounded-lg
+               hover:bg-gray-100 active:scale-[0.99] transition">
+        Close
+      </button>
+    </div>
+  </div>
+
+  <script src="components/navbar.js"></script>
+  <script src="components/footer.js"></script>
+  <script>feather.replace();</script>
+
+  <script>
+    const legislationDocuments = [
+      {
         number: "SC-1986-33",
         title: "Electoral Act 1986",
         original: "documents/sc-1986-33.pdf",
         amendments: [
-            {
-                year: 2013,
-                title: "Electoral Amendment (Social Media Advertising) Act 2013",
-                link: "documents/sc-2013-36.pdf"
-            },
-            {
-                year: 2026,
-                title: "Electoral Amendment (Online Voting) Act 2026",
-                link: "documents/sc-2026-01.pdf"
-            }
+          {
+            title: "Electoral Amendment (Social Media Advertising) Act 2013",
+            link: "documents/sc-2013-36.pdf"
+          },
+          {
+            title: "Electoral Amendment (Online Voting) Act 2026",
+            link: "documents/sc-2026-01.pdf"
+          }
         ],
-        keywords: "electoral government election MMP"
-    },
-    {
+        keywords: "electoral government election mmp"
+      },
+      {
         number: "SC-2025-42",
         title: "Federal Revenue and Tax Reform Act 2025",
         original: "documents/sc-2025-42.pdf",
         amendments: [],
-        keywords: "finance economy tax FRD frd"
-    },
-    {
+        keywords: "finance economy tax"
+      },
+      {
         number: "SC-2025-43",
         title: "Defence Expansion Act 2025",
         original: "documents/sc-2025-43.pdf",
         amendments: [],
-        keywords: "defence expansion MOD mod"
-    }
-];
+        keywords: "defence expansion"
+      }
+    ];
 
+    function searchLegislation() {
+      const query = legislationSearch.value.toLowerCase();
+      searchResults.innerHTML = "";
 
-function searchLegislation() {
-    const query = document.getElementById("legislationSearch").value.toLowerCase();
-    const resultsContainer = document.getElementById("searchResults");
-    resultsContainer.innerHTML = "";
-
-    const results = legislationDocuments.filter(doc =>
+      const results = legislationDocuments.filter(doc =>
         doc.number.toLowerCase().includes(query) ||
         doc.title.toLowerCase().includes(query) ||
-        doc.keywords.toLowerCase().includes(query)
-    );
+        doc.keywords.includes(query)
+      );
 
-    if (results.length === 0) {
-        resultsContainer.innerHTML = "<p class='text-gray-500'>No documents found.</p>";
+      if (!results.length) {
+        searchResults.innerHTML =
+          "<p class='text-gray-500'>No documents found.</p>";
         return;
+      }
+
+      results.forEach(doc => {
+        searchResults.innerHTML += `
+          <button onclick="openActMenu('${doc.number}')"
+            class="w-full text-left p-4 sm:p-5 bg-white rounded-xl shadow
+                   hover:bg-gray-50 active:scale-[0.99] transition">
+            <h3 class="font-semibold text-primary text-base sm:text-lg">
+              ${doc.title}
+            </h3>
+            <p class="text-sm text-gray-600 mt-1">${doc.number}</p>
+          </button>`;
+      });
     }
 
-    results.forEach(doc => {
-    resultsContainer.innerHTML += `
-        <button onclick="openActMenu('${doc.number}')"
-            class="w-full text-left p-4 bg-white rounded-lg shadow hover:bg-gray-50 transition">
-            <h3 class="font-semibold text-primary">${doc.title}</h3>
-            <p class="text-sm text-gray-600">${doc.number}</p>
-        </button>
-    `;
-});
+    function openActMenu(number) {
+      const doc = legislationDocuments.find(d => d.number === number);
+      if (!doc) return;
 
-}
+      actTitle.textContent = doc.title;
+      actNumber.textContent = doc.number;
+      originalLink.href = doc.original;
 
-function openActMenu(actNumber) {
-    const doc = legislationDocuments.find(
-        d => d.number === actNumber
-    );
-
-    if (!doc) return;
-
-
-    document.getElementById("actTitle").textContent = doc.title;
-    document.getElementById("actNumber").textContent = doc.number;
-
-    const originalLink = document.getElementById("originalLink");
-    originalLink.href = doc.original;
-
-    const amendmentsList = document.getElementById("amendmentsList");
-    const amendmentsSection = document.getElementById("amendmentsSection");
-    amendmentsList.innerHTML = "";
-
-    if (doc.amendments.length === 0) {
+      amendmentsList.innerHTML = "";
+      if (!doc.amendments.length) {
         amendmentsSection.classList.add("hidden");
-    } else {
+      } else {
         amendmentsSection.classList.remove("hidden");
-        doc.amendments.forEach(amend => {
-            amendmentsList.innerHTML += `
-                <a href="${amend.link}" target="_blank"
-                   class="block p-3 border rounded-lg hover:bg-gray-50 transition">
-                    ${amend.title}
-                </a>
-            `;
+        doc.amendments.forEach(a => {
+          amendmentsList.innerHTML += `
+            <a href="${a.link}" target="_blank"
+               class="block p-3 border rounded-lg hover:bg-gray-50 transition">
+              ${a.title}
+            </a>`;
         });
+      }
+
+      actMenu.classList.remove("hidden");
+      actMenu.classList.add("flex");
+
+      requestAnimationFrame(() =>
+        actMenuPanel.classList.remove("translate-y-full")
+      );
     }
 
-    const menu = document.getElementById("actMenu");
-    menu.classList.remove("hidden");
-    menu.classList.add("flex");
-}
-
-function closeActMenu() {
-    const menu = document.getElementById("actMenu");
-    menu.classList.add("hidden");
-    menu.classList.remove("flex");
-}
-
-function openActMenu(actNumber) {
-    const doc = legislationDocuments.find(d => d.number === actNumber);
-    if (!doc) return;
-
-    document.getElementById("actTitle").textContent = doc.title;
-    document.getElementById("actNumber").textContent = doc.number;
-
-    const originalLink = document.getElementById("originalLink");
-    originalLink.href = doc.original;
-
-    const amendmentsList = document.getElementById("amendmentsList");
-    const amendmentsSection = document.getElementById("amendmentsSection");
-    amendmentsList.innerHTML = "";
-
-    if (doc.amendments.length === 0) {
-        amendmentsSection.classList.add("hidden");
-    } else {
-        amendmentsSection.classList.remove("hidden");
-        doc.amendments.forEach(amend => {
-            amendmentsList.innerHTML += `
-                <a href="${amend.link}" target="_blank"
-                   class="block p-3 border rounded-lg hover:bg-gray-50 transition">
-                    ${amend.title}
-                </a>
-            `;
-        });
+    function closeActMenu() {
+      actMenuPanel.classList.add("translate-y-full");
+      setTimeout(() => {
+        actMenu.classList.add("hidden");
+        actMenu.classList.remove("flex");
+      }, 300);
     }
-
-    const menu = document.getElementById("actMenu");
-    const panel = document.getElementById("actMenuPanel");
-
-    menu.classList.remove("hidden");
-    menu.classList.add("flex");
-
-    // Allow repaint before animation
-    requestAnimationFrame(() => {
-        panel.classList.remove("translate-y-full");
-    });
-}
-
-function closeActMenu() {
-    const menu = document.getElementById("actMenu");
-    const panel = document.getElementById("actMenuPanel");
-
-    panel.classList.add("translate-y-full");
-
-    setTimeout(() => {
-        menu.classList.add("hidden");
-        menu.classList.remove("flex");
-    }, 300);
-}
-
-
-</script>
+  </script>
 </body>
 </html>
