@@ -33,28 +33,25 @@
             </div>
 
             <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
-    <h2 class="text-2xl font-semibold text-primary mb-4">Search Legislation</h2>
+                <h2 class="text-2xl font-semibold text-primary mb-4">Search Legislation</h2>
 
-    <form onsubmit="searchLegislation(); return false;" class="relative">
-        <input 
-            id="legislationSearch"
-            type="text"
-            placeholder="Search by document number, title, or keyword..."
-            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
-        >
-        <button 
-            type="submit"
-            class="absolute right-2 top-2 bg-accent text-white p-2 rounded-lg hover:bg-secondary transition"
-        >
-            <i data-feather="search"></i>
-        </button>
-    </form>
-</div>
+                <form onsubmit="searchLegislation(); return false;" class="relative">
+                    <input 
+                        id="legislationSearch"
+                        type="text"
+                        placeholder="Search by document number, title, or keyword..."
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
+                    >
+                    <button 
+                        type="submit"
+                        class="absolute right-2 top-2 bg-accent text-white p-2 rounded-lg hover:bg-secondary transition"
+                    >
+                        <i data-feather="search"></i>
+                    </button>
+                </form>
+            </div>
 
-
-<div id="searchResults" class="space-y-3"></div>
-
-
+            <div id="searchResults" class="space-y-3 mb-12"></div>
 
             <div class="grid md:grid-cols-2 gap-6">
                 <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition">
@@ -90,33 +87,64 @@
 
     <custom-footer></custom-footer>
 
+    <!-- ACT MENU MODAL -->
+    <div id="actMenu" class="fixed inset-0 bg-black/40 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-xl max-w-lg w-full p-6">
+            <h2 id="actTitle" class="text-2xl font-bold text-primary mb-1"></h2>
+            <p id="actNumber" class="text-gray-600 mb-6"></p>
+
+            <a id="originalLink"
+               class="block w-full bg-primary text-white text-center py-3 rounded-lg hover:bg-secondary transition mb-4"
+               target="_blank">
+                View Original Act
+            </a>
+
+            <div id="amendmentsSection">
+                <h3 class="font-semibold text-gray-800 mb-2">Amendments</h3>
+                <div id="amendmentsList" class="space-y-2"></div>
+            </div>
+
+            <button onclick="closeActMenu()"
+                    class="mt-6 w-full border border-gray-300 py-2 rounded-lg hover:bg-gray-100 transition">
+                Close
+            </button>
+        </div>
+    </div>
+
     <script src="components/navbar.js"></script>
     <script src="components/footer.js"></script>
     <script src="script.js"></script>
-    <script>
-        feather.replace();
-    </script>
+    <script>feather.replace();</script>
+
     <script>
 const legislationDocuments = [
     {
         number: "SC-1986-33",
         title: "Electoral Act 1986",
-        keywords: "electoral government election MMP",
-        link: "documents/sc-1986-33.pdf"
+        original: "documents/sc-1986-33.pdf",
+        amendments: [
+            {
+                year: 2013,
+                title: "Electoral Amendment (Social Media Campaigning) Act 2013",
+                link: "documents/sc-1986-33-amend-1993.pdf"
+            },
+            {
+                year: 2026,
+                title: "Electoral Amendment (Online Voting) Act 2026",
+                link: "documents/sc-1986-33-amend-2014.pdf"
+            }
+        ],
+        keywords: "electoral government election MMP"
     },
     {
         number: "SC-2025-42",
         title: "Federal Revenue and Tax Reform Act 2025",
-        keywords: "finance economy tax FRD frd",
-        link: "documents/sc-2025-42.pdf"
-    },
-    {
-        number: "Bill 203",
-        title: "Climate Responsibility Bill",
-        keywords: "climate environment emissions",
-        link: "documents/climate-bill.html"
+        original: "documents/sc-2025-42.pdf",
+        amendments: [],
+        keywords: "finance economy tax FRD frd"
     }
 ];
+
 
 function searchLegislation() {
     const query = document.getElementById("legislationSearch").value.toLowerCase();
@@ -139,17 +167,54 @@ function searchLegislation() {
         return;
     }
 
-    results.forEach(doc => {
+    results.forEach((doc, index) => {
         resultsContainer.innerHTML += `
-            <a href="${doc.link}" class="block p-4 bg-white rounded-lg shadow hover:bg-gray-50 transition">
+            <button onclick="openActMenu(${index})"
+                class="w-full text-left p-4 bg-white rounded-lg shadow hover:bg-gray-50 transition">
                 <h3 class="font-semibold text-primary">${doc.title}</h3>
                 <p class="text-sm text-gray-600">${doc.number}</p>
-            </a>
+            </button>
         `;
     });
 }
-</script>
 
-    </script>
+function openActMenu(index) {
+    const doc = legislationDocuments[index];
+
+    document.getElementById("actTitle").textContent = doc.title;
+    document.getElementById("actNumber").textContent = doc.number;
+
+    const originalLink = document.getElementById("originalLink");
+    originalLink.href = doc.original;
+
+    const amendmentsList = document.getElementById("amendmentsList");
+    const amendmentsSection = document.getElementById("amendmentsSection");
+    amendmentsList.innerHTML = "";
+
+    if (doc.amendments.length === 0) {
+        amendmentsSection.classList.add("hidden");
+    } else {
+        amendmentsSection.classList.remove("hidden");
+        doc.amendments.forEach(amend => {
+            amendmentsList.innerHTML += `
+                <a href="${amend.link}" target="_blank"
+                   class="block p-3 border rounded-lg hover:bg-gray-50 transition">
+                    ${amend.title}
+                </a>
+            `;
+        });
+    }
+
+    const menu = document.getElementById("actMenu");
+    menu.classList.remove("hidden");
+    menu.classList.add("flex");
+}
+
+function closeActMenu() {
+    const menu = document.getElementById("actMenu");
+    menu.classList.add("hidden");
+    menu.classList.remove("flex");
+}
+</script>
 </body>
 </html>
