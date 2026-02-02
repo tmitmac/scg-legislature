@@ -262,41 +262,45 @@
 
 
   function searchLegislation() {
-    const query = legislationSearch.value.toLowerCase();
-    searchResults.innerHTML = "";
+  const query = legislationSearch.value.toLowerCase().trim();
+  searchResults.innerHTML = "";
 
-    const results = legislationDocuments.filter(doc =>
-      doc.number.toLowerCase().includes(query) ||
-      doc.title.toLowerCase().includes(query) ||
-      doc.keywords.includes(query)
-    );
+  // ❌ If empty input → show nothing
+  if (!query) return;
 
-    if (!results.length) {
-      searchResults.innerHTML =
-        "<p class='text-gray-500'>No documents found.</p>";
-      return;
-    }
+  const results = legislationDocuments.filter(doc =>
+    doc.number.toLowerCase().includes(query) ||
+    doc.title.toLowerCase().includes(query) ||
+    doc.keywords.toLowerCase().includes(query)
+  );
 
-    results.forEach(doc => {
-      const repealedBadge = doc.repealed
-        ? `<span class="ml-2 inline-block rounded-full bg-red-100 px-2.5 py-0.5
-                 text-xs font-semibold text-red-700 align-middle">
-             REPEALED
-           </span>`
-        : "";
-
-      searchResults.innerHTML += `
-        <button onclick="openActMenu('${doc.number}')"
-          class="w-full text-left p-4 sm:p-5 bg-white rounded-xl shadow
-                 hover:bg-gray-50 active:scale-[0.99] transition">
-          <h3 class="font-semibold text-primary text-base sm:text-lg flex items-center flex-wrap">
-            ${doc.title}
-            ${repealedBadge}
-          </h3>
-          <p class="text-sm text-gray-600 mt-1">${doc.number}</p>
-        </button>`;
-    });
+  if (!results.length) {
+    searchResults.innerHTML =
+      "<p class='text-gray-500'>No documents found.</p>";
+    return;
   }
+
+  results.forEach(doc => {
+    const repealedBadge = doc.repealed
+      ? `<span class="ml-2 inline-block rounded-full bg-red-100 px-2.5 py-0.5
+               text-xs font-semibold text-red-700 align-middle">
+           REPEALED
+         </span>`
+      : "";
+
+    searchResults.innerHTML += `
+      <button onclick="openActMenu('${doc.number}')"
+        class="w-full text-left p-4 sm:p-5 bg-white rounded-xl shadow
+               hover:bg-gray-50 active:scale-[0.99] transition">
+        <h3 class="font-semibold text-primary text-base sm:text-lg flex items-center flex-wrap">
+          ${doc.title}
+          ${repealedBadge}
+        </h3>
+        <p class="text-sm text-gray-600 mt-1">${doc.number}</p>
+      </button>`;
+  });
+}
+
 
     function openActMenu(number) {
       const doc = legislationDocuments.find(d => d.number === number);
@@ -342,6 +346,15 @@
         actMenu.classList.remove("flex");
       }, 300);
     }
+
+
+    const legislationSearch = document.getElementById("legislationSearch");
+const searchResults = document.getElementById("searchResults");
+
+legislationSearch.addEventListener("input", () => {
+  searchLegislation(); // live typing
+});
+
   </script>
 </body>
 </html>
