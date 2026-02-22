@@ -9,7 +9,7 @@ class CustomNavbar extends HTMLElement {
         }
 
         nav {
-          background: #1e3a8a;
+          background: #1e293b;
           padding: 0.75rem 1rem;
           display: flex;
           align-items: center;
@@ -77,7 +77,7 @@ class CustomNavbar extends HTMLElement {
             top: 100%;
             left: 0;
             right: 0;
-            background: #1e3a8a;
+            background: #1e293b;
             flex-direction: column;
             gap: 0;
             padding: 0.5rem 0;
