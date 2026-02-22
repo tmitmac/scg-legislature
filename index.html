@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Square Country Legislation</title>
-
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/feather-icons"></script>
@@ -27,86 +26,241 @@
 <body class="bg-gray-50 min-h-screen flex flex-col antialiased">
   <custom-navbar></custom-navbar>
 
-  <main class="container mx-auto px-4 py-6 sm:py-8 flex-grow">
-    <div class="max-w-4xl mx-auto">
+<main class="flex-grow">
 
-      <!-- HERO -->
-      <div class="text-center mb-8 sm:mb-12">
-        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-3">
-          Square Country Legislation Portal
-        </h1>
-        <p class="text-base sm:text-lg md:text-xl text-gray-600">
-          Access official legislative documents and regulations
+  <!-- OFFICIAL HEADER -->
+  <section class="bg-slate-900 text-white">
+    <div class="max-w-7xl mx-auto px-6 py-16">
+
+      <div class="max-w-3xl">
+
+        <p class="uppercase tracking-widest text-blue-400 font-semibold text-sm mb-3">
+          Government of Square Country
         </p>
-      </div>
 
-      <!-- SEARCH -->
-      <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6 mb-8">
-        <h2 class="text-xl sm:text-2xl font-semibold text-primary mb-4">
-          Search Legislation
-        </h2>
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">
+          Legislation Portal
+        </h1>
 
-        <form onsubmit="searchLegislation(); return false;" class="relative">
+        <p class="text-slate-300 text-lg mb-8">
+          The official source of legislation for Square Country. Access Acts of Parliament, amendments, and historical laws.
+        </p>
+
+        <!-- SEARCH -->
+        <form onsubmit="searchLegislation(); return false;" class="relative max-w-xl">
+
           <i data-feather="search"
-             class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none"></i>
+            class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
 
           <input
             id="legislationSearch"
             type="text"
-            inputmode="search"
-            placeholder="Search by document number, title, or keyword…"
-            class="w-full pl-11 pr-4 py-3 sm:py-3.5 border border-gray-300 rounded-lg
-                   focus:ring-2 focus:ring-accent focus:border-accent
-                   text-base text-gray-800 placeholder-gray-400"
+            placeholder="Search legislation..."
+            class="w-full pl-11 pr-4 py-4 rounded-lg text-slate-900 focus:ring-2 focus:ring-blue-500 outline-none"
           />
+
         </form>
+
       </div>
 
-      <!-- RESULTS -->
-      <div id="searchResults" class="space-y-4 mb-10"></div>
-
-      <!-- QUICK LINKS -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-        <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6 hover:shadow-xl transition">
-          <div class="flex items-center mb-3">
-            <div class="bg-blue-100 p-3 rounded-full mr-4">
-              <i data-feather="file-text" class="text-primary w-6 h-6"></i>
-            </div>
-            <h3 class="text-lg sm:text-xl font-semibold text-gray-800">
-              Recent Legislation
-            </h3>
-          </div>
-          <p class="text-gray-600 mb-4">
-            Browse the most recently passed laws and regulations.
-          </p>
-          <a href="recent.html"
-             class="text-accent font-medium hover:text-primary transition flex items-center">
-            View recent documents
-            <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
-          </a>
-        </div>
-
-        <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6 hover:shadow-xl transition">
-          <div class="flex items-center mb-3">
-            <div class="bg-blue-100 p-3 rounded-full mr-4">
-              <i data-feather="archive" class="text-primary w-6 h-6"></i>
-            </div>
-            <h3 class="text-lg sm:text-xl font-semibold text-gray-800">
-              Legislative Archive
-            </h3>
-          </div>
-          <p class="text-gray-600 mb-4">
-            Access historical legislation dating back to the founding of Square Country.
-          </p>
-          <a href="archive.html"
-             class="text-accent font-medium hover:text-primary transition flex items-center">
-            Browse archive
-            <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
-          </a>
-        </div>
-      </div>
     </div>
-  </main>
+  </section>
+
+
+  <!-- RESULTS -->
+  <section class="max-w-5xl mx-auto px-6 py-10">
+
+    <div id="searchResults" class="space-y-4"></div>
+
+  </section>
+
+
+  <!-- FEATURED ACT -->
+  <section class="max-w-7xl mx-auto px-6 py-12">
+
+    <h2 class="text-2xl font-bold text-slate-800 mb-6">
+      Featured Legislation
+    </h2>
+
+    <div onclick="openActMenu('SC-2025-42')"
+      class="bg-white border rounded-xl p-6 cursor-pointer hover:shadow-md transition">
+
+      <p class="text-sm text-blue-600 font-semibold mb-1">
+        Most Recent Act
+      </p>
+
+      <h3 class="text-xl font-semibold mb-1">
+        Defence Expansion Act 2025
+      </h3>
+
+      <p class="text-gray-500">
+        SC-2025-43
+      </p>
+    </div>
+    <br></br>
+    <div onclick="openActMenu('SC-1993-34')"
+      class="bg-white border rounded-xl p-6 cursor-pointer hover:shadow-md transition">
+
+      <p class="text-sm text-blue-600 font-semibold mb-1">
+        Most Recent Amendment
+      </p>
+
+      <h3 class="text-xl font-semibold mb-1">
+        Criminal Responsibility (Age Reduction) Amendment Act 2025
+      </h3>
+
+      <p class="text-gray-500">
+        SC-2025-43
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- BROWSE SECTIONS -->
+  <section class="max-w-7xl mx-auto px-6 py-12">
+
+    <h2 class="text-2xl font-bold text-slate-800 mb-6">
+      Browse Legislation
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+
+      <a href="recent.html"
+      class="bg-white border rounded-xl p-6 hover:shadow-md transition">
+
+        <i data-feather="clock" class="mb-3"></i>
+
+        <h3 class="font-semibold text-lg mb-2">
+          Recent Legislation
+        </h3>
+
+        <p class="text-gray-600 text-sm">
+          View laws passed in the past 10 years
+        </p>
+
+      </a>
+
+
+      <a href="archive.html"
+      class="bg-white border rounded-xl p-6 hover:shadow-md transition">
+
+        <i data-feather="archive" class="mb-3"></i>
+
+        <h3 class="font-semibold text-lg mb-2">
+          Full Archive
+        </h3>
+
+        <p class="text-gray-600 text-sm">
+          Browse all historical Acts
+        </p>
+
+      </a>
+
+
+      <a href="#"
+      class="bg-white border rounded-xl p-6 hover:shadow-md transition">
+
+        <i data-feather="book-open" class="mb-3"></i>
+
+        <h3 class="font-semibold text-lg mb-2">
+          Constitution
+        </h3>
+
+        <p class="text-gray-600 text-sm">
+          View constitutional legislation
+        </p>
+
+      </a>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ABOUT -->
+  <section class="bg-white border-y">
+
+    <div class="max-w-7xl mx-auto px-6 py-12">
+
+      <h2 class="text-2xl font-bold mb-4">
+        About Square Country Legislation
+      </h2>
+
+      <p class="text-gray-600 max-w-3xl leading-relaxed">
+
+        Legislation published on this portal is the official law of Square Country.
+
+        Acts are passed by Parliament and receive Royal Assent before becoming law.
+
+        This website is maintained by the Office of Legislative Counsel.
+
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- STATISTICS -->
+  <section class="max-w-7xl mx-auto px-6 py-12">
+
+    <h2 class="text-2xl font-bold mb-6">
+      Legislation Statistics
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+
+      <div class="bg-white border p-6 rounded-xl">
+
+        <p class="text-3xl font-bold">
+          3946
+        </p>
+
+        <p class="text-gray-600">
+          Total Acts
+        </p>
+
+      </div>
+
+
+      <div class="bg-white border p-6 rounded-xl">
+
+        <p class="text-3xl font-bold">
+          1798
+        </p>
+
+        <p class="text-gray-600">
+          Oldest Act
+        </p>
+
+      </div>
+
+
+      <div class="bg-white border p-6 rounded-xl">
+
+        <p class="text-3xl font-bold">
+          2025
+        </p>
+
+        <p class="text-gray-600">
+          Latest Act
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+</main>
 
   <custom-footer></custom-footer>
 
@@ -271,15 +425,15 @@ const legislationDocuments = [
     original: "documents/sc-2025-43.pdf",
     amendments: [],
     keywords: "defence expansion"
-  }
+  },
 ];
 
 
   function searchLegislation() {
+
   const query = legislationSearch.value.toLowerCase().trim();
   searchResults.innerHTML = "";
 
-  // ❌ If empty input → show nothing
   if (!query) return;
 
   const results = legislationDocuments.filter(doc =>
@@ -289,30 +443,98 @@ const legislationDocuments = [
   );
 
   if (!results.length) {
-    searchResults.innerHTML =
-      "<p class='text-gray-500'>No documents found.</p>";
+
+    searchResults.innerHTML = `
+      <div class="bg-white border rounded-xl p-6">
+
+        <p class="text-gray-600">
+          No legislation found matching your search.
+        </p>
+
+      </div>
+    `;
+
     return;
   }
 
-  results.forEach(doc => {
-    const repealedBadge = doc.repealed
-      ? `<span class="ml-2 inline-block rounded-full bg-red-100 px-2.5 py-0.5
-               text-xs font-semibold text-red-700 align-middle">
-           REPEALED
-         </span>`
-      : "";
 
-    searchResults.innerHTML += `
-      <button onclick="openActMenu('${doc.number}')"
-        class="w-full text-left p-4 sm:p-5 bg-white rounded-xl shadow
-               hover:bg-gray-50 active:scale-[0.99] transition">
-        <h3 class="font-semibold text-primary text-base sm:text-lg flex items-center flex-wrap">
-          ${doc.title}
-          ${repealedBadge}
-        </h3>
-        <p class="text-sm text-gray-600 mt-1">${doc.number}</p>
-      </button>`;
-  });
+  searchResults.innerHTML = `
+
+    <div class="bg-white border rounded-xl overflow-hidden">
+
+      <div class="px-6 py-4 border-b bg-slate-50">
+
+        <h2 class="font-semibold text-slate-800">
+          Search Results (${results.length})
+        </h2>
+
+      </div>
+
+      <div class="divide-y">
+
+        ${results.map(doc => {
+
+          const repealedBadge = doc.repealed
+          ? `
+            <span class="ml-4 text-xs font-semibold text-red-700 bg-red-100 px-3 py-1 rounded-full">
+              Repealed
+            </span>
+          `
+          : `
+            <span class="ml-4 text-xs font-semibold text-green-700 bg-green-100 px-3 py-1 rounded-full">
+              In Force
+            </span>
+          `;
+
+
+          return `
+
+          <button onclick="openActMenu('${doc.number}')"
+
+            class="w-full text-left px-6 py-5 hover:bg-slate-50 transition flex justify-between items-center">
+
+              <div>
+
+                <h3 class="font-semibold text-slate-900 text-lg">
+
+                  ${doc.title}
+
+                </h3>
+
+                <p class="text-sm text-gray-500 mt-1">
+
+                  Act Number: ${doc.number}
+
+                </p>
+
+              </div>
+
+
+              <div class="flex items-center">
+
+                ${repealedBadge}
+
+                <i data-feather="chevron-right"
+                class="ml-4 text-gray-400"></i>
+
+              </div>
+
+
+          </button>
+
+          `;
+
+        }).join("")}
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  feather.replace();
+
 }
 
 
