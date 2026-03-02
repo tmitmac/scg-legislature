@@ -8,36 +8,72 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-</head>
-<body class="bg-gray-50 min-h-screen flex flex-col">
-    <custom-navbar></custom-navbar>
-    
-    <main class="container mx-auto px-4 py-8 flex-grow">
-        <div class="max-w-6xl mx-auto">
-            <div class="mb-8">
-                <h1 class="text-3xl font-bold text-primary mb-2">Legislative Archive</h1>
-                <p class="text-gray-600">Historical legislation of Square Country</p>
-            </div>
 
-            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
-                <h2 class="text-xl font-semibold text-primary mb-4">Search Archive</h2>
-                <div class="grid md:grid-cols-4 gap-4">
+    <style>
+        .fade-up {
+            transition: all 0.4s ease;
+        }
+        .fade-up:hover {
+            transform: translateY(-6px);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen flex flex-col">
+
+<custom-navbar></custom-navbar>
+
+<main class="flex-grow">
+
+    <!-- HERO -->
+    <section class="relative bg-gradient-to-br from-primary to-secondary text-[#0e172a] py-24">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="max-w-3xl">
+                <p class="uppercase tracking-widest text-sm opacity-80 mb-4">
+                    Square Country Legislative Records
+                </p>
+                <h1 class="text-5xl font-bold leading-tight mb-6">
+                    Legislative Archive
+                </h1>
+                <p class="text-lg opacity-90">
+                    Browse historical laws, constitutional records, and archived legislation
+                    that have shaped Square Country.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEARCH SECTION -->
+    <section class="-mt-16 mb-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="bg-white rounded-3xl shadow-2xl p-10 border border-gray-100">
+
+                <div class="flex items-center justify-between mb-8">
+                    <div class="flex items-center space-x-3">
+                        <i data-feather="filter" class="text-primary"></i>
+                        <h2 class="text-2xl font-semibold text-primary">
+                            Filter Archive
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-4 gap-6">
+
                     <div>
-                        <label class="block text-gray-700 mb-2">Year</label>
-                        <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent">
-                            <option>All Years</option>
-                            <option>2023</option>
-                            <option>2022</option>
-                            <option>2021</option>
-                            <option>2020</option>
-                            <option>2019</option>
-                            <option>2018</option>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Year
+                        </label>
+                        <select id="yearSelect"
+                            class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-accent focus:outline-none">
+                            <option value="">All Years</option>
                         </select>
                     </div>
+
                     <div>
-                        <label class="block text-gray-700 mb-2">Category</label>
-                        <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Category
+                        </label>
+                        <select class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-accent focus:outline-none">
                             <option>All Categories</option>
                             <option>Constitutional</option>
                             <option>Education</option>
@@ -47,9 +83,12 @@
                             <option>Public Safety</option>
                         </select>
                     </div>
+
                     <div>
-                        <label class="block text-gray-700 mb-2">Document Type</label>
-                        <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Document Type
+                        </label>
+                        <select class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-accent focus:outline-none">
                             <option>All Types</option>
                             <option>Laws</option>
                             <option>Amendments</option>
@@ -57,93 +96,149 @@
                             <option>Resolutions</option>
                         </select>
                     </div>
+
                     <div class="flex items-end">
-                        <button class="w-full bg-accent text-white px-4 py-2 rounded-lg hover:bg-secondary transition">
-                            <i data-feather="search" class="inline mr-2"></i> Search
+                        <button class="w-full bg-[#0e172a] text-white px-6 py-3 rounded-xl font-semibold hover:bg-secondary transition shadow-lg hover:shadow-xl">
+                            Search Archive
                         </button>
                     </div>
+
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
-                    <div class="bg-primary p-4 text-white">
-                        <h3 class="text-lg font-semibold">Constitutional Documents</h3>
-                    </div>
-                    <div class="p-4">
-                        <p class="text-gray-600 mb-4">Foundational documents of Square Country including the original constitution and amendments.</p>
-                        <a href="/archive/constitution.html" class="text-accent font-medium hover:text-primary transition flex items-center">
-                            Browse documents
-                            <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
-                        </a>
-                    </div>
-                </div>
+    <!-- ARCHIVE NAVIGATION -->
+    <section class="max-w-6xl mx-auto px-6 mb-24">
+        <div class="grid md:grid-cols-3 gap-10">
 
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
-                    <div class="bg-primary p-4 text-white">
-                        <h3 class="text-lg font-semibold">Laws by Decade</h3>
-                    </div>
-                    <div class="p-4">
-                        <p class="text-gray-600 mb-4">Historical legislation organized by decade from the founding to present.</p>
-                        <a href="/archive/decades.html" class="text-accent font-medium hover:text-primary transition flex items-center">
-                            Browse by decade
-                            <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
-                        </a>
-                    </div>
+            <!-- Card 1 -->
+            <div class="bg-white rounded-3xl shadow-md border border-gray-100 fade-up p-8">
+                <div class="mb-6">
+                    <i data-feather="book-open" class="text-primary w-8 h-8"></i>
                 </div>
-
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
-                    <div class="bg-primary p-4 text-white">
-                        <h3 class="text-lg font-semibold">Subject Index</h3>
-                    </div>
-                    <div class="p-4">
-                        <p class="text-gray-600 mb-4">Browse legislation organized by subject matter and topic areas.</p>
-                        <a href="/archive/subjects.html" class="text-accent font-medium hover:text-primary transition flex items-center">
-                            Browse by subject
-                            <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
-                        </a>
-                    </div>
-                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">
+                    Constitutional Documents
+                </h3>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    Foundational documents including the Constitution and
+                    historical amendments establishing national governance.
+                </p>
+                <a href="/archive/constitution.html"
+                   class="text-accent font-medium hover:text-primary transition flex items-center">
+                    Explore collection
+                    <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                </a>
             </div>
 
-           
-            <div class="mt-12">
-                <h2 class="text-2xl font-semibold text-primary mb-4">Featured Collections</h2>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <a href="landmark.html" class="block bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition">
-    <div class="flex items-start">
-        <div class="bg-primary-100 p-3 rounded-lg mr-4">
-            <i data-feather="award" class="text-primary w-6 h-6"></i>
+            <!-- Card 2 -->
+            <div class="bg-white rounded-3xl shadow-md border border-gray-100 fade-up p-8">
+                <div class="mb-6">
+                    <i data-feather="calendar" class="text-primary w-8 h-8"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">
+                    Laws by Decade
+                </h3>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    Legislative instruments organised chronologically,
+                    tracing policy development across decades.
+                </p>
+                <a href="/archive/decades.html"
+                   class="text-accent font-medium hover:text-primary transition flex items-center">
+                    Browse decades
+                    <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                </a>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-white rounded-3xl shadow-md border border-gray-100 fade-up p-8">
+                <div class="mb-6">
+                    <i data-feather="layers" class="text-primary w-8 h-8"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">
+                    Subject Index
+                </h3>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    Browse legislation by policy area including education,
+                    finance, infrastructure, and public safety.
+                </p>
+                <a href="/archive/subjects.html"
+                   class="text-accent font-medium hover:text-primary transition flex items-center">
+                    View subjects
+                    <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                </a>
+            </div>
+
         </div>
-        <div>
-            <h3 class="text-xl font-semibold text-gray-800 mb-2">Landmark Legislation</h3>
-            <p class="text-gray-600">Key laws that shaped the development of Square Country, including economic reforms and civil rights milestones.</p> 
-        </div>
-    </div>
-</a>
-                    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition">
-                        <div class="flex items-start">
-                            <div class="bg-primary-100 p-3 rounded-lg mr-4">
-                                <i data-feather="globe" class="text-primary w-6 h-6"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-gray-800 mb-2">International Agreements</h3>
-                                <p class="text-gray-600">Treaties, trade agreements, and international conventions signed by Square Country.</p>
-                            </div>
+    </section>
+
+    <!-- FEATURED COLLECTIONS -->
+    <section class="bg-gray-100 py-20">
+        <div class="max-w-6xl mx-auto px-6">
+
+            <h2 class="text-3xl font-semibold text-primary mb-12">
+                Featured Collections
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-10">
+
+                <a href="landmark.html"
+                   class="bg-white rounded-3xl shadow-md border border-gray-100 p-10 fade-up">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-primary/10 p-4 rounded-xl mr-4">
+                            <i data-feather="award" class="text-primary w-6 h-6"></i>
                         </div>
+                        <h3 class="text-xl font-semibold text-gray-900">
+                            Landmark Legislation
+                        </h3>
                     </div>
-                </div>
+                    <p class="text-gray-600 leading-relaxed">
+                        Major legislative milestones that shaped Square Country’s
+                        constitutional, economic, and civil development.
+                    </p>
+                </a>
+
+                <a href="placeholder.html"
+                   class="bg-white rounded-3xl shadow-md border border-gray-100 p-10 fade-up">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-primary/10 p-4 rounded-xl mr-4">
+                            <i data-feather="globe" class="text-primary w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900">
+                            International Agreements
+                        </h3>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed">
+                        Treaties, conventions, and trade agreements entered into
+                        by Square Country within the international community.
+                    </p>
+                </a>
+
             </div>
         </div>
-    </main>
+    </section>
 
-    <custom-footer></custom-footer>
+</main>
 
-    <script src="components/navbar.js"></script>
-    <script src="components/footer.js"></script>
-    <script src="script.js"></script>
-    <script>
-        feather.replace();
-    </script>
+<custom-footer></custom-footer>
+
+<script src="components/navbar.js"></script>
+<script src="components/footer.js"></script>
+<script>
+    feather.replace();
+</script>
+<script>
+    const startYear = 1797;   // earliest year
+    const endYear = new Date().getFullYear(); // current year auto-updates
+
+    const yearSelect = document.getElementById("yearSelect");
+
+    for (let year = endYear; year >= startYear; year--) {
+        const option = document.createElement("option");
+        option.value = year;
+        option.textContent = year;
+        yearSelect.appendChild(option);
+    }
+</script>
 </body>
 </html>
