@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Square Country Legislation</title>
-  <link rel="icon" type="image/x-icon" href="images/SCL.png">
+  <link rel="icon" type="image/x-icon" href="images/SCL.ico">
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/feather-icons"></script>
@@ -83,7 +83,7 @@
       Featured Legislation
     </h2>
 
-    <div onclick="openActMenu('SC-2025-42')"
+    <div onclick="openActMenu('SC-2025-43')"
       class="bg-white border rounded-xl p-6 cursor-pointer hover:shadow-md transition">
 
       <p class="text-sm text-blue-600 font-semibold mb-1">
@@ -322,6 +322,54 @@
 
   <script>
 const legislationDocuments = [
+// 1900s //
+
+  {
+    number: "SC-1902-52",
+    title: "Public Service Act 1902",
+    original: "documents/sc-1902-52.pdf",
+    amendments: [
+    {
+      title: "Public Service Amendment Act 1910",
+      link: "undefined"
+    },
+    {
+      title: "Public Service Amendment Act 1934",
+      link: "undefined"
+    },
+    {
+      title: "Public Service Amendment Act 1958",
+      link: "undefined"
+    }
+    ],
+    keywords: "public service government",
+    repealed: true,
+    repealedBy: "Public Service Act 1975"
+  },
+
+// 1910s //
+
+  {
+    number: "SC-1910-09",
+    title: "Local Government Act 1910",
+    original: "documents/sc-1910-09.pdf",
+    amendments: [],
+    keywords: "government election council regional",
+    repealed: true,
+    repealedBy: "Local Government Reform Act 2005"
+  },
+  {
+    number: "SC-1915-62",
+    title: "Extended Wartime Measures Act 1915",
+    original: "documents/sc-1910-09.pdf",
+    amendments: [],
+    keywords: "war defence europe offensive",
+    repealed: false,
+    repealedBy: ""
+  },
+
+// 1920s // 
+
   {
     number: "SC-1923-05",
     title: "Legal Tender Act 1923",
@@ -331,6 +379,57 @@ const legislationDocuments = [
     repealed: true,
     repealedBy: "Decimal Currency Act 1967"
   },
+  {
+    number: "SC-1923-05",
+    title: "Transport Regulation Act 1926",
+    original: "documents/sc-1923-05.pdf",
+    amendments: [],
+    keywords: "money, tender, cash, currency, pounds, dollars",
+    repealed: true,
+    repealedBy: "Decimal Currency Act 1967"
+  },
+
+// 1930s //
+
+  {
+    number: "SC-1939-01",
+    title: "Immigration Control and Customs Act 1939",
+    original: "documents/sc-1939-01.pdf",
+    amendments: [
+    {
+      title: "Immigration (Stronger Security) Amendment Act 1986",
+      link: "undefined"
+    },
+
+    ],
+    keywords: "immigration customs justice border control",
+    repealed: true,
+    repealedBy: "Immigrations (Open Arms) Act 2006"
+  },
+
+// 1940s//
+
+  {
+    number: "SC-1940-08",
+    title: "Education Act 1949",
+    original: "documents/sc-1940-08.pdf",
+    amendments: [
+    {
+      title: "Education Amendment Act 1956",
+      link: "undefined"
+    },
+    {
+      title: "Education Amendment Act 1960",
+      link: "undefined"
+    }
+    ],
+    keywords: "education teachers classrooms students schools learning college",
+    repealed: true,
+    repealedBy: "Education Act 1989"
+  },
+
+// 1950s // 
+
   {
     number: "SC-1950-02",
     title: "Wildlife Act 1950",
@@ -349,12 +448,25 @@ const legislationDocuments = [
     repealed: true,
     repealedBy: "Electoral Act 1986"
   },
+
+// 1960s //
+
+  {
+    number: "SC-1962-25",
+    title: "Consumer Protections Act 1962",
+    original: "documents/sc-1962-25.pdf",
+    amendments: [],
+    keywords: "civil rights goods services",
+    repealed: false,
+    repealedBy: ""
+  },
+
   {
     number: "SC-1963-47",
     title: "Equal Rights Act 1963",
     original: "documents/sc-1963-47.pdf",
     amendments: [],
-    keywords: "civil rights equality race racial gender 1963",
+    keywords: "civil rights equality race racial gender sexual",
     repealed: false,
     repealedBy: ""
   },
@@ -367,10 +479,25 @@ const legislationDocuments = [
         title: "Decimal Currency (Digital Currency) Ammendment Act 1992"
       }
     ],
-    keywords: "money, tender, cash, currency, decimal, dollars",
+    keywords: "money, tender, cash, currency, decimal, dollars, moola",
     repealed: false,
     repealedBy: ""
   },
+
+// 1970s //
+
+  {
+    number: "SC-1979-12",
+    title: "Statistics Act 1979",
+    original: "documents/sc-1979-12.pdf",
+    amendments: [],
+    keywords: "Numbers, Stats, Statistics, Graph, Data, Information",
+    repealed: false,
+    repealedBy: ""
+  },
+
+// 1980s //
+  
   {
     number: "SC-1986-33",
     title: "Electoral Act 1986",
@@ -387,6 +514,32 @@ const legislationDocuments = [
     ],
     keywords: "electoral government election mmp"
   },
+
+    {
+    number: "SC-1989-14",
+    title: "Education Act 1989",
+    original: "documents/sc-1989-14.pdf",
+    amendments: [
+      {
+        title: "Edcuation Amendment Act 1994",
+        link: "undefined"
+      },
+      {
+        title: "Edcuation Amendment Act 1996",
+        link: "undefined"
+      },
+      {
+        title: "Edcuation Amendment Act 2008",
+        link: "undefined"
+      }
+    ],
+    keywords: "education teachers classrooms students schools learning college",
+    repealed: true,
+    repealedBy: "Education and Training Act 2015"
+  },
+
+// 1990s //
+  
   {
     number: "SC-1993-34",
     title: "Criminal Responsibility Act 1993",
@@ -413,6 +566,66 @@ const legislationDocuments = [
     ],
     keywords: "traffic laws ministry transport 1994"
   },
+
+  {
+    number: "SC-1996-56",
+    title: "Telecommunications Act 1996",
+    original: "documents/sc-1996-56.pdf",
+    amendments: [
+      {
+        title: "Telecommunications Amendment Act 2007",
+        link: "undefined"
+      }
+    ],
+    keywords: "telecommunications"
+  },
+
+// 2000s //
+
+  {
+    number: "SC-2005-23",
+    title: "Local Government Reform Act 2005",
+    original: "documents/sc-2005-23.pdf",
+    amendments: [],
+    keywords: "government election council regional",
+    repealed: false,
+    repealedBy: ""
+  },
+
+  {
+    number: "SC-2006-44",
+    title: "Immigration (Open Arms) Act 2006",
+    original: "documents/sc-2006-44.pdf",
+    amendments: [],
+    keywords: "immigration customs people justice border",
+    repealed: true,
+    repealedBy: "Education Act 1989"
+  },
+
+  {
+    number: "SC-2015-39",
+    title: "Education and Training Act 2015",
+    original: "documents/sc-2015-39.pdf",
+    amendments: [
+      {
+        title: "Education and Training Amendment Act 2017",
+        link: "undefined"
+      },
+      {
+        title: "Education and Training Amendment Act 2019",
+        link: "undefined"
+      },
+      {
+        title: "Education and Training Amendment Act 2025",
+        link: "undefined"
+      }
+    ],
+    keywords: "education teachers classrooms students schools learning college",
+    repealed: false,
+    repealedBy: ""
+    
+  },
+
   {
     number: "SC-2025-42",
     title: "Federal Revenue and Tax Reform Act 2025",
