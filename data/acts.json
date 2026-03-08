@@ -1,0 +1,75 @@
+[
+  ["SC-1902-52","Public Service Act 1902","documents/sc-1902-52.pdf","public service government",true,"Public Service Act 1975",
+    [["Public Service Amendment Act 1910","undefined"],
+     ["Public Service Amendment Act 1934","undefined"],
+     ["Public Service Amendment Act 1958","undefined"]]
+  ],
+
+  ["SC-1910-09","Local Government Act 1910","documents/sc-1910-09.pdf","government election council regional",true,"Local Government Reform Act 2005",[]],
+
+  ["SC-1915-62","Extended Wartime Measures Act 1915","documents/sc-1915-62.pdf","war defence europe offensive",false,"",[]],
+
+  ["SC-1923-05","Legal Tender Act 1923","documents/sc-1923-05.pdf","money tender currency pounds dollars",true,"Decimal Currency Act 1967",[]],
+
+  ["SC-1926-12","Transport Regulation Act 1926","documents/sc-1926-12.pdf","transport regulation vehicles roads",true,"Transport Reform Act 1970",[]],
+
+  ["SC-1939-01","Immigration Control and Customs Act 1939","documents/sc-1939-01.pdf","immigration customs justice border control",true,"Immigrations (Open Arms) Act 2006",
+    [["Immigration (Stronger Security) Amendment Act 1986","undefined"]]
+  ],
+
+  ["SC-1940-08","Education Act 1949","documents/sc-1940-08.pdf","education teachers classrooms students schools learning college",true,"Education Act 1989",
+    [["Education Amendment Act 1956","undefined"],
+     ["Education Amendment Act 1960","undefined"]]
+  ],
+
+  ["SC-1950-02","Wildlife Act 1950","documents/sc-1950-02.pdf","wildlife animals nature conservation",false,"",[]],
+
+  ["SC-1953-18","Electoral Act 1953","documents/sc-1953-18.pdf","electoral election government fpp",true,"Electoral Act 1986",[]],
+
+  ["SC-1962-25","Consumer Protections Act 1962","documents/sc-1962-25.pdf","civil rights goods services",false,"",[]],
+
+  ["SC-1963-47","Equal Rights Act 1963","documents/sc-1963-47.pdf","civil rights equality race gender",false,"",[]],
+
+  ["SC-1967-29","Decimal Currency Act 1967","documents/sc-1967-29.pdf","money currency decimal dollars",false,"",
+    [["Decimal Currency (Digital Currency) Amendment Act 1992","undefined"]]
+  ],
+
+  ["SC-1979-12","Statistics Act 1979","documents/sc-1979-12.pdf","statistics data information",false,"",[]],
+
+  ["SC-1986-33","Electoral Act 1986","documents/sc-1986-33.pdf","electoral government election mmp",false,"",
+    [["Electoral Amendment (Social Media Advertising) Act 2013","documents/sc-2013-36.pdf"],
+     ["Electoral Amendment (Online Voting) Act 2026","documents/sc-2026-01.pdf"]]
+  ],
+
+  ["SC-1989-14","Education Act 1989","documents/sc-1989-14.pdf","education schools teachers",true,"Education and Training Act 2015",
+    [["Education Amendment Act 1994","undefined"],
+     ["Education Amendment Act 1996","undefined"],
+     ["Education Amendment Act 2008","undefined"]]
+  ],
+
+  ["SC-1993-34","Criminal Responsibility Act 1993","documents/sc-1993-34.pdf","criminal responsibility sentencing law",false,"",
+    [["Criminal Responsibility (Age Reduction) Amendment Act 2025","documents/sc-2025-44.pdf"]]
+  ],
+
+  ["SC-1994-27","Traffic Laws Act 1994","documents/sc-1994-27.pdf","traffic transport roads",false,"",
+    [["Traffic Laws (Emergency Speed) Amendment Act 2008","documents/sc-2008-31.pdf"]]
+  ],
+
+  ["SC-1996-56","Telecommunications Act 1996","documents/sc-1996-56.pdf","telecommunications internet",false,"",
+    [["Telecommunications Amendment Act 2007","undefined"]]
+  ],
+
+  ["SC-2005-23","Local Government Reform Act 2005","documents/sc-2005-23.pdf","government council regional",false,"",[]],
+
+  ["SC-2006-44","Immigration (Open Arms) Act 2006","documents/sc-2006-44.pdf","immigration border people",false,"",[]],
+
+  ["SC-2015-39","Education and Training Act 2015","documents/sc-2015-39.pdf","education schools teachers",false,"",
+    [["Education and Training Amendment Act 2017","undefined"],
+     ["Education and Training Amendment Act 2019","undefined"],
+     ["Education and Training Amendment Act 2025","undefined"]]
+  ],
+
+  ["SC-2025-42","Federal Revenue and Tax Reform Act 2025","documents/sc-2025-42.pdf","finance economy tax",false,"",[]],
+
+  ["SC-2025-43","Defence Expansion Act 2025","documents/sc-2025-43.pdf","defence military expansion",false,"",[]]
+]
