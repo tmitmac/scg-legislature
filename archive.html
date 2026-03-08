@@ -228,17 +228,33 @@
     feather.replace();
 </script>
 <script>
-    const startYear = 1797;   // earliest year
+    const startYear = 1798;   // earliest year
     const endYear = new Date().getFullYear(); // current year auto-updates
 
-    const yearSelect = document.getElementById("yearSelect");
+   const yearSelect = document.getElementById("yearSelect");
 
-    for (let year = endYear; year >= startYear; year--) {
-        const option = document.createElement("option");
-        option.value = year;
-        option.textContent = year;
-        yearSelect.appendChild(option);
-    }
+fetch("data/acts.json")
+  .then(res => res.json())
+  .then(data => {
+
+    // extract year from act number (SC-YYYY-XX)
+    const years = data.map(a => a[0].split("-")[1]);
+
+    // remove duplicates
+    const uniqueYears = [...new Set(years)];
+
+    // sort newest → oldest
+    uniqueYears.sort((a,b) => b - a);
+
+    // populate dropdown
+    uniqueYears.forEach(year => {
+      const option = document.createElement("option");
+      option.value = year;
+      option.textContent = year;
+      yearSelect.appendChild(option);
+    });
+
+  });
 </script>
 </body>
 </html>
