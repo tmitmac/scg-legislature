@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Legislative Archive - SquareDocs</title>
+    <title>Legislative Archive - Square Country Legislation</title>
     <link rel="icon" type="image/x-icon" href="images/SCL.png">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -98,8 +98,9 @@
                     </div>
 
                     <div class="flex items-end">
-                        <button class="w-full bg-[#0e172a] text-white px-6 py-3 rounded-xl font-semibold hover:bg-secondary transition shadow-lg hover:shadow-xl">
-                            Search Archive
+                        <button id="searchBtn"
+                            class="w-full bg-[#0e172a] text-white px-6 py-3 rounded-xl font-semibold hover:bg-secondary transition shadow-lg hover:shadow-xl">
+                                Search Archive
                         </button>
                     </div>
 
@@ -107,6 +108,11 @@
             </div>
         </div>
     </section>
+
+<!-- SEARCH RESULTS -->
+<section class="max-w-6xl mx-auto px-6 mb-24">
+    <div id="results" class="space-y-6"></div>
+</section>
 
     <!-- ARCHIVE NAVIGATION -->
     <section class="max-w-6xl mx-auto px-6 mb-24">
@@ -228,33 +234,93 @@
     feather.replace();
 </script>
 <script>
-    const startYear = 1798;   // earliest year
-    const endYear = new Date().getFullYear(); // current year auto-updates
 
-   const yearSelect = document.getElementById("yearSelect");
+let acts = [];
+
+const yearSelect = document.getElementById("yearSelect");
+const searchBtn = document.getElementById("searchBtn");
+const resultsDiv = document.getElementById("results");
 
 fetch("data/acts.json")
-  .then(res => res.json())
-  .then(data => {
+.then(res => res.json())
+.then(data => {
 
-    // extract year from act number (SC-YYYY-XX)
+    acts = data;
+
+    // extract years
     const years = data.map(a => a[0].split("-")[1]);
 
-    // remove duplicates
     const uniqueYears = [...new Set(years)];
 
-    // sort newest → oldest
-    uniqueYears.sort((a,b) => b - a);
+    uniqueYears.sort((a,b)=>b-a);
 
-    // populate dropdown
-    uniqueYears.forEach(year => {
-      const option = document.createElement("option");
-      option.value = year;
-      option.textContent = year;
-      yearSelect.appendChild(option);
+    uniqueYears.forEach(year=>{
+        const option=document.createElement("option");
+        option.value=year;
+        option.textContent=year;
+        yearSelect.appendChild(option);
     });
 
-  });
+});
+
+searchBtn.addEventListener("click", function(){
+
+    const selectedYear = yearSelect.value;
+
+    resultsDiv.innerHTML = "";
+
+    const filtered = acts.filter(act => {
+
+        const actYear = act[0].split("-")[1];
+
+        if(selectedYear && actYear !== selectedYear){
+            return false;
+        }
+
+        return true;
+    });
+
+    if(filtered.length === 0){
+        resultsDiv.innerHTML =
+        `<p class="text-gray-600">No legislation found.</p>`;
+        return;
+    }
+
+    filtered.forEach(act => {
+
+        const number = act[0];
+        const title = act[1];
+        const pdf = act[2];
+        const repealed = act[4];
+
+        const card = document.createElement("div");
+
+        card.className =
+        "bg-white rounded-2xl shadow-md border border-gray-100 p-6";
+
+        card.innerHTML = `
+            <div class="flex justify-between items-center">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-900">${title}</h3>
+                    <p class="text-gray-500 text-sm">${number}</p>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    ${repealed ? '<span class="text-red-600 text-sm font-medium">Repealed</span>' : ''}
+                    <a href="${pdf}" target="_blank"
+                    class="text-accent font-medium hover:text-primary">
+                    View PDF
+                    </a>
+                </div>
+            </div>
+        `;
+
+        resultsDiv.appendChild(card);
+
+    });
+
+});
+
 </script>
 </body>
 </html>
