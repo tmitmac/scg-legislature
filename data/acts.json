@@ -64,7 +64,7 @@
 
   ["SC-2005-23","Local Government Reform Act 2005","documents/sc-2005-23.pdf","government council regional",false,"",[]],
 
-  ["SC-2006-44","Immigration (Open Arms) Act 2006","documents/sc-2006-44.pdf","immigration border people",false,"",[]],
+  ["SC-2006-44","Immigration (Open Arms) Act 2006","documents/sc-2006-44.pdf","immigration border people",true,"Immigration Security and Border Integrity Act 2026",[]],
 
   ["SC-2015-39","Education and Training Act 2015","documents/sc-2015-39.pdf","education schools teachers",false,"",
     [["Education and Training Amendment Act 2017","undefined"],
@@ -77,5 +77,7 @@
 
   ["SC-2025-42","Federal Revenue and Tax Reform Act 2025","documents/sc-2025-42.pdf","finance economy tax",false,"",[]],
 
-  ["SC-2025-43","Defence Expansion Act 2025","documents/sc-2025-43.pdf","defence military expansion",false,"",[]]
+  ["SC-2025-43","Defence Expansion Act 2025","documents/sc-2025-43.pdf","defence military expansion",false,"",[]],
+
+   ["SC-2026-02","Immigration Security and Border Integrity Act 2026","documents/sc-2026-02.pdf","justice passport entry exit airport port plane overseas",false,"",[]]
 ]
