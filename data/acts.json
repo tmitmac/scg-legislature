@@ -44,6 +44,11 @@
 
   ["SC-1979-12","Statistics Act 1979","documents/sc-1979-12.pdf","statistics data information",false,"",[]],
 
+  ["SC-1983-19","Businesses Act 1983","documents/sc-1983-19.pdf","money store goods services",false,"",
+    [["Businesses (Digital Enterprise) Amendment Act 2001","undefined"],
+     ["Businesses (Partnership Laws) Amendment Act 2020","undefined"]]
+  ],
+
   ["SC-1986-33","Electoral Act 1986","documents/sc-1986-33.pdf","electoral government election mmp",false,"",
     [["Electoral Amendment (Social Media Advertising) Act 2013","documents/sc-2013-36.pdf"],
      ["Electoral Amendment (Online Voting) Act 2026","documents/sc-2026-01.pdf"]]
