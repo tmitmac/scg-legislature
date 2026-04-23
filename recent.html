@@ -31,279 +31,161 @@ accent: '#2563eb'
 
 <custom-navbar></custom-navbar>
 
-
 <main class="flex-grow">
 
-
-<!-- OFFICIAL HEADER -->
-
+<!-- HEADER -->
 <section class="bg-slate-900 text-white">
-
 <div class="max-w-7xl mx-auto px-6 py-14">
-
 <p class="uppercase tracking-widest text-blue-400 text-sm font-semibold mb-2">
 Government of Square Country
 </p>
-
 <h1 class="text-4xl font-bold mb-3">
 Recent Legislation
 </h1>
-
 <p class="text-slate-300 max-w-2xl">
 This register contains Acts of Parliament passed within the past 12 months.
 </p>
-
 </div>
-
 </section>
 
-
-
 <!-- REGISTER -->
-
 <section class="max-w-7xl mx-auto px-6 py-10">
-
 
 <div class="bg-white border rounded-xl overflow-hidden shadow-sm">
 
-
 <!-- HEADER ROW -->
-
 <div class="grid grid-cols-12 bg-slate-100 text-slate-700 text-sm font-semibold px-6 py-4">
-
-<div class="col-span-2">
-Act Number
+<div class="col-span-2">Act Number</div>
+<div class="col-span-5">Title</div>
+<div class="col-span-2">Date Passed</div>
+<div class="col-span-1">Status</div>
+<div class="col-span-2 text-right">Actions</div>
 </div>
 
-<div class="col-span-5">
-Title
-</div>
-
-<div class="col-span-2">
-Date Passed
-</div>
-
-<div class="col-span-1">
-Status
-</div>
-
-<div class="col-span-2 text-right">
-Actions
-</div>
+<!-- DYNAMIC ROWS -->
+<div id="legislation-container"></div>
 
 </div>
-
-
-
-<!-- ROW -->
-
-<div class="grid grid-cols-12 items-center px-6 py-5 border-t hover:bg-slate-50 transition">
-
-<div class="col-span-2 font-mono text-gray-700">
-SC-2025-44
-</div>
-
-<div class="col-span-5 font-semibold text-slate-900">
-Criminal Responsibility (Age Reduction) Amendment Act 2025
-</div>
-
-<div class="col-span-2 text-gray-600">
-12 Nov 2025
-</div>
-
-<div class="col-span-1">
-
-<span class="text-xs font-semibold bg-green-100 text-green-700 px-3 py-1 rounded-full">
-In Force
-</span>
-
-</div>
-
-<div class="col-span-2 text-right space-x-4">
-
-<button onclick="window.open('documents/sc-2025-44.pdf','_blank')"
-class="text-accent hover:text-primary font-medium">
-
-<i data-feather="external-link" class="inline w-4 h-4 mr-1"></i>
-
-View
-
-</button>
-
-
-<a href="documents/sc-2025-44.pdf" download
-class="text-accent hover:text-primary font-medium">
-
-<i data-feather="download" class="inline w-4 h-4 mr-1"></i>
-
-Download
-
-</a>
-
-</div>
-
-</div>
-
-
-
-<!-- ROW -->
-
-<div class="grid grid-cols-12 items-center px-6 py-5 border-t hover:bg-slate-50 transition">
-
-<div class="col-span-2 font-mono">
-SC-2025-43
-</div>
-
-<div class="col-span-5 font-semibold">
-Defence Expansion Act 2025
-</div>
-
-<div class="col-span-2 text-gray-600">
-6 Nov 2025
-</div>
-
-<div class="col-span-1">
-
-<span class="text-xs font-semibold bg-green-100 text-green-700 px-3 py-1 rounded-full">
-In Force
-</span>
-
-</div>
-
-<div class="col-span-2 text-right space-x-4">
-
-<button onclick="window.open('documents/sc-2025-43.pdf','_blank')"
-class="text-accent hover:text-primary font-medium">
-
-<i data-feather="external-link" class="inline w-4 h-4 mr-1"></i>
-
-View
-
-</button>
-
-
-<a href="documents/sc-2025-43.pdf" download
-class="text-accent hover:text-primary font-medium">
-
-<i data-feather="download" class="inline w-4 h-4 mr-1"></i>
-
-Download
-
-</a>
-
-</div>
-
-</div>
-
-
-
-<!-- ROW -->
-
-<div class="grid grid-cols-12 items-center px-6 py-5 border-t hover:bg-slate-50 transition">
-
-<div class="col-span-2 font-mono">
-SC-2025-42
-</div>
-
-<div class="col-span-5 font-semibold">
-Federal Revenue and Tax Reform Act 2025
-</div>
-
-<div class="col-span-2 text-gray-600">
-25 Oct 2025
-</div>
-
-<div class="col-span-1">
-
-<span class="text-xs font-semibold bg-green-100 text-green-700 px-3 py-1 rounded-full">
-In Force
-</span>
-
-</div>
-
-<div class="col-span-2 text-right space-x-4">
-
-<button onclick="window.open('documents/sc-2025-42.pdf','_blank')"
-class="text-accent hover:text-primary font-medium">
-
-<i data-feather="external-link" class="inline w-4 h-4 mr-1"></i>
-
-View
-
-</button>
-
-
-<a href="documents/sc-2025-42.pdf" download
-class="text-accent hover:text-primary font-medium">
-
-<i data-feather="download" class="inline w-4 h-4 mr-1"></i>
-
-Download
-
-</a>
-
-</div>
-
-</div>
-
-
-
-</div>
-
-
 
 <!-- PAGINATION -->
-
 <div class="flex items-center justify-between mt-8">
 
-
-<button
+<button id="prevBtn"
 class="bg-white border px-5 py-2 rounded-lg hover:bg-gray-100">
-
 <i data-feather="chevron-left" class="inline w-4 h-4 mr-1"></i>
-
 Previous
-
 </button>
 
-
-<span class="text-gray-600">
-Page 1 of 12
+<span id="pageInfo" class="text-gray-600">
+Page 1
 </span>
 
-
-<button
+<button id="nextBtn"
 class="bg-white border px-5 py-2 rounded-lg hover:bg-gray-100">
-
 Next
-
 <i data-feather="chevron-right" class="inline w-4 h-4 ml-1"></i>
-
 </button>
 
-
 </div>
-
 
 </section>
 
-
 </main>
-
-
 
 <custom-footer></custom-footer>
 
-
-
 <script src="components/navbar.js"></script>
-
 <script src="components/footer.js"></script>
 
 <script>
-feather.replace()
-</script>
+const legislation = [
+      {
+    number: "SC-2026-02",
+    title: "Immigration Security and Border Integrity Act 2026",
+    date: "9 March 2026",
+    file: "documents/sc-2026-02.pdf"
+  },
+  {
+    number: "SC-2025-44",
+    title: "Criminal Responsibility (Age Reduction) Amendment Act 2025",
+    date: "12 Nov 2025",
+    file: "documents/sc-2025-44.pdf"
+  },
+  {
+    number: "SC-2025-43",
+    title: "Defence Expansion Act 2025",
+    date: "6 Nov 2025",
+    file: "documents/sc-2025-43.pdf"
+  },
+  {
+    number: "SC-2025-42",
+    title: "Federal Revenue and Tax Reform Act 2025",
+    date: "25 Oct 2025",
+    file: "documents/sc-2025-42.pdf"
+  },
+];
 
+let currentIndex = 0;
+const perPage = 3;
+
+function render() {
+  const container = document.getElementById("legislation-container");
+  container.innerHTML = "";
+
+  const visible = legislation.slice(currentIndex, currentIndex + perPage);
+
+  visible.forEach(act => {
+    container.innerHTML += `
+    <div class="grid grid-cols-12 items-center px-6 py-5 border-t hover:bg-slate-50 transition">
+      <div class="col-span-2 font-mono">${act.number}</div>
+      <div class="col-span-5 font-semibold">${act.title}</div>
+      <div class="col-span-2 text-gray-600">${act.date}</div>
+      <div class="col-span-1">
+        <span class="text-xs font-semibold bg-green-100 text-green-700 px-3 py-1 rounded-full">
+        In Force
+        </span>
+      </div>
+      <div class="col-span-2 text-right space-x-4">
+        <button onclick="window.open('${act.file}','_blank')"
+        class="text-accent hover:text-primary font-medium">
+        <i data-feather="external-link" class="inline w-4 h-4 mr-1"></i>
+        View
+        </button>
+
+        <a href="${act.file}" download
+        class="text-accent hover:text-primary font-medium">
+        <i data-feather="download" class="inline w-4 h-4 mr-1"></i>
+        Download
+        </a>
+      </div>
+    </div>
+    `;
+  });
+
+  feather.replace();
+
+  const page = Math.floor(currentIndex / perPage) + 1;
+  const total = Math.ceil(legislation.length / perPage);
+  document.getElementById("pageInfo").innerText = `Page ${page} of ${total}`;
+}
+
+document.getElementById("nextBtn").addEventListener("click", () => {
+  if (currentIndex + perPage < legislation.length) {
+    currentIndex += perPage;
+    render();
+  }
+});
+
+document.getElementById("prevBtn").addEventListener("click", () => {
+  if (currentIndex - perPage >= 0) {
+    currentIndex -= perPage;
+    render();
+  }
+});
+
+render();
+feather.replace();
+</script>
 
 </body>
 </html>
